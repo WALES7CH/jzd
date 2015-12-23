@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">京之道</string>
+    <string name="action_settings">Settings</string>
+    <string name="name">单位名称</string>
+    <string name="address">地址</string>
+    <string name="detail_address">具体位置</string>
+    <string name="type">类别</string>
+    <string name="lan_type">连线方式</string>
+    <string name="boot_time">开机时间</string>
+    <string name="shut_time">关机时间</string>
+    <string name="boot_on_sunday">周末开机</string>
+    <string name="factory">厂家</string>
+    <string name="contact">联系人</string>
+    <string name="phone">电话</string>
+    <string name="qrcode">二维码</string>
+    <string name="hddsn">硬盘号</string>
+    <string name="note">备注</string>
+    <string name="type_dz">党政</string>
+    <string name="type_gx">高校</string>
+    <string name="type_qy">企业</string>
+    <string name="lantype_lan">有线</string>
+    <string name="lantype_wifi">WiFi</string>
+    <string name="lantype_adsl">WiFi</string>
+    <string name="gen">生成信息</string>
+    <string name="clearinfo">清空信息</string>
+    <string name="str_hint">请输入</string>
+    <string name="str_cityname">城市</string>
+    <string name="str_otherkey">关键字</string>
+    <string name="install_search">预安装查询</string>
+    <string name="installed_search">已安装查询</string>
+    <string name="repair_search">巡检维修查询</string>
+    <string name="str_clean">清空</string>
+    <string name="str_search">查询</string>
+    <string name="title_activity_detail_view">DetailViewActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_detail_edit">DetailEditActivity</string>
+    <string name="area">区域</string>
+
+</resources>
