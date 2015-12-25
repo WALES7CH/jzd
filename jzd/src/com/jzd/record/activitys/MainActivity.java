@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.jzd.record.DetailEditActivity;
 import com.jzd.record.R;
-import com.jzd.record.db.DBManager;
+import com.jzd.record.db.DbCityHelper;
 import com.jzd.record.db.DataBaseServer;
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button btn_install, btn_installed, btn_repair_search, btn_install_record, btn_repair_record,
 			btn_import_installed, btn_export_installed;
 	private DataBaseServer db;
-	private DBManager dbmanager;
+	private DbCityHelper dbmanager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	public void DbInit() {
 
-		dbmanager = new DBManager(this);
+		dbmanager = new DbCityHelper(this);
 		dbmanager.openDatabase();
 		dbmanager.closeDatabase();
 
