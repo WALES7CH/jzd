@@ -29,15 +29,15 @@
         android:text="@string/area"
         android:textSize="@dimen/text_s" />
 
-    <EditText
-        android:id="@+id/et_area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
+    <Spinner
+        android:id="@+id/spi_company_city"
         android:layout_gravity="fill"
-        android:focusable="false"
-        android:hint="@string/hint"
-        android:text="" />
+        android:clickable="false" />
+
+    <Spinner
+        android:id="@+id/spi_company_area"
+        android:layout_gravity="fill"
+        android:clickable="false" />
 
     <TextView
         android:id="@+id/tt_address"
@@ -84,8 +84,8 @@
         android:id="@+id/spi_company_type"
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
-        android:entries="@array/company_type"
-        android:focusable="false" />
+        android:clickable="false"
+        android:entries="@array/company_type" />
 
     <TextView
         android:id="@+id/tt_lan_type"

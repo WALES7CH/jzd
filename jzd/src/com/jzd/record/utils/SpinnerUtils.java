@@ -1,5 +1,6 @@
 package com.jzd.record.utils;
 
+import android.util.Log;
 import android.widget.Spinner;
 
 public class SpinnerUtils {
@@ -11,6 +12,7 @@ public class SpinnerUtils {
 	 * @param value
 	 */
 	public static void setSelectedItem(Spinner spinner, String value) {
+		Log.e("Spinner", value);
 		for (int i = 0; i < spinner.getAdapter().getCount(); i++) {
 			if (spinner.getItemAtPosition(i).toString().equals(value)) {
 				spinner.setSelection(i);

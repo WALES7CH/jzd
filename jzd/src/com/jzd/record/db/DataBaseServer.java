@@ -32,19 +32,20 @@ public class DataBaseServer {
 	public boolean update(CompanyClass entity) {
 		try {
 			SQLiteDatabase localSQLiteDatabase = this.dbhelper.getWritableDatabase();
-			Object[] arrayOfObject = new Object[6];
+			Object[] arrayOfObject = new Object[7];
 			arrayOfObject[0] = entity.getCompany_name();
-			arrayOfObject[1] = entity.getCompany_aera();
-			arrayOfObject[2] = entity.getBoot_on_weekend();
-			arrayOfObject[3] = entity.getCompany_address();
-			arrayOfObject[4] = entity.getCompany_type();
-			arrayOfObject[5] = entity.get_id();
+			arrayOfObject[1] = entity.getCompany_city();
+			arrayOfObject[2] = entity.getCompany_aera();
+			arrayOfObject[3] = entity.getBoot_on_weekend();
+			arrayOfObject[4] = entity.getCompany_address();
+			arrayOfObject[5] = entity.getCompany_type();
+			arrayOfObject[6] = entity.get_id();
 
 			Log.e("TAG", entity.toString());
 
 			localSQLiteDatabase
 					.execSQL(
-							"update t_install set company_name = ?,  company_aera = ? , boot_on_weekend = ? , company_address = ?,company_type = ? where _id = ?",
+							"update t_install set company_name = ?, company_city = ? , company_aera = ? , boot_on_weekend = ? , company_address = ?,company_type = ? where _id = ?",
 							arrayOfObject);
 
 			localSQLiteDatabase.close();
@@ -117,6 +118,7 @@ public class DataBaseServer {
 
 		while (localCursor.moveToNext()) {
 			company.setCompany_name(localCursor.getString(localCursor.getColumnIndex("company_name")));
+			company.setCompany_city(localCursor.getString(localCursor.getColumnIndex("company_city")));
 			company.setCompany_aera(localCursor.getString(localCursor.getColumnIndex("company_aera")));
 			company.setCompany_address(localCursor.getString(localCursor.getColumnIndex("company_address")));
 			company.set_id(localCursor.getInt(localCursor.getColumnIndex("_id")));
