@@ -30,12 +30,21 @@
     <string name="str_otherkey">关键字</string>
     <string name="install_search">预安装查询</string>
     <string name="installed_search">已安装查询</string>
-    <string name="repair_search">巡检维修查询</string>
     <string name="str_clean">清空</string>
     <string name="str_search">查询</string>
     <string name="title_activity_detail_view">DetailViewActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_detail_edit">DetailEditActivity</string>
     <string name="area">区域</string>
+    <string name="company_type">单位性质</string>
+    <string name="boot_on_weekend">周末开机</string>
+    <string name="str_btn_modify">修改</string>
+    <string name="str_btn_cpinfo">复制信息</string>
+    <string name="hint"></string>
+    <string name="repair_search">巡检报修查询</string>
+    <string name="repair_record">巡检报修登记</string>
+    <string name="import_installed">导入已安装(from excel)</string>
+    <string name="export_installed">导出已安装(to excel)</string>
+    <string name="str_btn_install_record">安装登记</string>
 
 </resources>

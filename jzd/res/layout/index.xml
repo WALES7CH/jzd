@@ -3,7 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <Button
+        android:id="@+id/btn_install_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_btn_install_record" />
+
     <Button
         android:id="@+id/btn_install_search"
         android:layout_width="match_parent"
@@ -17,9 +23,27 @@
         android:text="@string/installed_search" />
 
     <Button
-        android:id="@+id/btn_repair_record"
+        android:id="@+id/btn_repair_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/repair_search" />
+
+    <Button
+        android:id="@+id/btn_repair_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/repair_record" />
+
+    <Button
+        android:id="@+id/btn_import_installed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/import_installed" />
+
+    <Button
+        android:id="@+id/btn_export_installed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/export_installed" />
 
 </LinearLayout>

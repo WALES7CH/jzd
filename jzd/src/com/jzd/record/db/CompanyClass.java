@@ -2,11 +2,10 @@ package com.jzd.record.db;
 
 public class CompanyClass {
 
-	private int _id, first_phone, sec_phone, boot_on_weekend;
-	private String company_name, company_city, company_address, company_aera,
-			first_contact, sec_contact, boot_time, shut_time, company_type,
-			lan_type, harddisk_no, qrcode_no, wifi_ssid, wifi_password, note1,
-			note2, factory, chat_date, install_date,create_date,modify_date;
+	private int _id, boot_on_weekend;
+	private String company_name, company_city, company_address, company_aera, first_contact, sec_contact, boot_time,
+			shut_time, company_type, lan_type, harddisk_no, qrcode_no, wifi_ssid, wifi_password, note1, note2, factory,
+			chat_date, install_date, create_date, modify_date, sec_phone, first_phone;
 
 	public String getCreate_date() {
 		return create_date;
@@ -56,19 +55,19 @@ public class CompanyClass {
 		this._id = _id;
 	}
 
-	public int getFirst_phone() {
+	public String getFirst_phone() {
 		return first_phone;
 	}
 
-	public void setFirst_phone(int first_phone) {
+	public void setFirst_phone(String first_phone) {
 		this.first_phone = first_phone;
 	}
 
-	public int getSec_phone() {
+	public String getSec_phone() {
 		return sec_phone;
 	}
 
-	public void setSec_phone(int sec_phone) {
+	public void setSec_phone(String sec_phone) {
 		this.sec_phone = sec_phone;
 	}
 
@@ -210,20 +209,16 @@ public class CompanyClass {
 
 	@Override
 	public String toString() {
-		return "CompanyClass [_id=" + _id + ", first_phone=" + first_phone
-				+ ", sec_phone=" + sec_phone + ", boot_on_weekend="
-				+ boot_on_weekend + ", company_name=" + company_name
-				+ ", company_city=" + company_city + ", company_address="
-				+ company_address + ", company_aera=" + company_aera
-				+ ", first_contact=" + first_contact + ", sec_contact="
-				+ sec_contact + ", boot_time=" + boot_time + ", shut_time="
-				+ shut_time + ", company_type=" + company_type + ", lan_type="
-				+ lan_type + ", harddisk_no=" + harddisk_no + ", qrcode_no="
-				+ qrcode_no + ", wifi_ssid=" + wifi_ssid + ", wifi_password="
-				+ wifi_password + ", note1=" + note1 + ", note2=" + note2
-				+ ", factory=" + factory + ", chat_date=" + chat_date
-				+ ", install_date=" + install_date + "]";
+		return "CompanyClass [_id=" + _id + ", first_phone=" + first_phone + ", sec_phone=" + sec_phone
+				+ ", boot_on_weekend=" + boot_on_weekend + ", company_name=" + company_name + ", company_city="
+				+ company_city + ", company_address=" + company_address + ", company_aera=" + company_aera
+				+ ", first_contact=" + first_contact + ", sec_contact=" + sec_contact + ", boot_time=" + boot_time
+				+ ", shut_time=" + shut_time + ", company_type=" + company_type + ", lan_type=" + lan_type
+				+ ", harddisk_no=" + harddisk_no + ", qrcode_no=" + qrcode_no + ", wifi_ssid=" + wifi_ssid
+				+ ", wifi_password=" + wifi_password + ", note1=" + note1 + ", note2=" + note2 + ", factory=" + factory
+				+ ", chat_date=" + chat_date + ", install_date=" + install_date + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -231,39 +226,29 @@ public class CompanyClass {
 		int result = 1;
 		result = prime * result + _id;
 		result = prime * result + boot_on_weekend;
-		result = prime * result
-				+ ((boot_time == null) ? 0 : boot_time.hashCode());
-		result = prime * result
-				+ ((company_address == null) ? 0 : company_address.hashCode());
-		result = prime * result
-				+ ((company_aera == null) ? 0 : company_aera.hashCode());
-		result = prime * result
-				+ ((company_city == null) ? 0 : company_city.hashCode());
-		result = prime * result
-				+ ((company_name == null) ? 0 : company_name.hashCode());
-		result = prime * result
-				+ ((company_type == null) ? 0 : company_type.hashCode());
+		result = prime * result + ((boot_time == null) ? 0 : boot_time.hashCode());
+		result = prime * result + ((chat_date == null) ? 0 : chat_date.hashCode());
+		result = prime * result + ((company_address == null) ? 0 : company_address.hashCode());
+		result = prime * result + ((company_aera == null) ? 0 : company_aera.hashCode());
+		result = prime * result + ((company_city == null) ? 0 : company_city.hashCode());
+		result = prime * result + ((company_name == null) ? 0 : company_name.hashCode());
+		result = prime * result + ((company_type == null) ? 0 : company_type.hashCode());
+		result = prime * result + ((create_date == null) ? 0 : create_date.hashCode());
 		result = prime * result + ((factory == null) ? 0 : factory.hashCode());
-		result = prime * result
-				+ ((first_contact == null) ? 0 : first_contact.hashCode());
-		result = prime * result + first_phone;
-		result = prime * result
-				+ ((harddisk_no == null) ? 0 : harddisk_no.hashCode());
-		result = prime * result
-				+ ((lan_type == null) ? 0 : lan_type.hashCode());
+		result = prime * result + ((first_contact == null) ? 0 : first_contact.hashCode());
+		result = prime * result + ((first_phone == null) ? 0 : first_phone.hashCode());
+		result = prime * result + ((harddisk_no == null) ? 0 : harddisk_no.hashCode());
+		result = prime * result + ((install_date == null) ? 0 : install_date.hashCode());
+		result = prime * result + ((lan_type == null) ? 0 : lan_type.hashCode());
+		result = prime * result + ((modify_date == null) ? 0 : modify_date.hashCode());
 		result = prime * result + ((note1 == null) ? 0 : note1.hashCode());
 		result = prime * result + ((note2 == null) ? 0 : note2.hashCode());
-		result = prime * result
-				+ ((qrcode_no == null) ? 0 : qrcode_no.hashCode());
-		result = prime * result
-				+ ((sec_contact == null) ? 0 : sec_contact.hashCode());
-		result = prime * result + sec_phone;
-		result = prime * result
-				+ ((shut_time == null) ? 0 : shut_time.hashCode());
-		result = prime * result
-				+ ((wifi_password == null) ? 0 : wifi_password.hashCode());
-		result = prime * result
-				+ ((wifi_ssid == null) ? 0 : wifi_ssid.hashCode());
+		result = prime * result + ((qrcode_no == null) ? 0 : qrcode_no.hashCode());
+		result = prime * result + ((sec_contact == null) ? 0 : sec_contact.hashCode());
+		result = prime * result + ((sec_phone == null) ? 0 : sec_phone.hashCode());
+		result = prime * result + ((shut_time == null) ? 0 : shut_time.hashCode());
+		result = prime * result + ((wifi_password == null) ? 0 : wifi_password.hashCode());
+		result = prime * result + ((wifi_ssid == null) ? 0 : wifi_ssid.hashCode());
 		return result;
 	}
 
@@ -284,6 +269,11 @@ public class CompanyClass {
 			if (other.boot_time != null)
 				return false;
 		} else if (!boot_time.equals(other.boot_time))
+			return false;
+		if (chat_date == null) {
+			if (other.chat_date != null)
+				return false;
+		} else if (!chat_date.equals(other.chat_date))
 			return false;
 		if (company_address == null) {
 			if (other.company_address != null)
@@ -310,6 +300,11 @@ public class CompanyClass {
 				return false;
 		} else if (!company_type.equals(other.company_type))
 			return false;
+		if (create_date == null) {
+			if (other.create_date != null)
+				return false;
+		} else if (!create_date.equals(other.create_date))
+			return false;
 		if (factory == null) {
 			if (other.factory != null)
 				return false;
@@ -320,17 +315,30 @@ public class CompanyClass {
 				return false;
 		} else if (!first_contact.equals(other.first_contact))
 			return false;
-		if (first_phone != other.first_phone)
+		if (first_phone == null) {
+			if (other.first_phone != null)
+				return false;
+		} else if (!first_phone.equals(other.first_phone))
 			return false;
 		if (harddisk_no == null) {
 			if (other.harddisk_no != null)
 				return false;
 		} else if (!harddisk_no.equals(other.harddisk_no))
 			return false;
+		if (install_date == null) {
+			if (other.install_date != null)
+				return false;
+		} else if (!install_date.equals(other.install_date))
+			return false;
 		if (lan_type == null) {
 			if (other.lan_type != null)
 				return false;
 		} else if (!lan_type.equals(other.lan_type))
+			return false;
+		if (modify_date == null) {
+			if (other.modify_date != null)
+				return false;
+		} else if (!modify_date.equals(other.modify_date))
 			return false;
 		if (note1 == null) {
 			if (other.note1 != null)
@@ -352,7 +360,10 @@ public class CompanyClass {
 				return false;
 		} else if (!sec_contact.equals(other.sec_contact))
 			return false;
-		if (sec_phone != other.sec_phone)
+		if (sec_phone == null) {
+			if (other.sec_phone != null)
+				return false;
+		} else if (!sec_phone.equals(other.sec_phone))
 			return false;
 		if (shut_time == null) {
 			if (other.shut_time != null)

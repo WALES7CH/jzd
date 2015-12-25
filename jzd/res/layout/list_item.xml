@@ -18,7 +18,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="20sp"
         android:visibility="gone" />
 
     <LinearLayout
@@ -40,6 +39,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hddsn" />
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address" />
     </LinearLayout>
 
 </RelativeLayout>

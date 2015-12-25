@@ -1,16 +1,286 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".DetailEditActivity" >
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="5dp"
+    android:columnCount="3"
+    android:rowCount="10" >
 
     <TextView
+        android:id="@+id/tt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="@string/name"
+        android:textSize="@dimen/text_m" />
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/str_hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/area"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/address"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_detail_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detail_address"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_detail_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_company_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/company_type"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_company_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_lan_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lan_type"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_lan_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_boot_on_weekend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/boot_on_weekend"
+        android:textSize="@dimen/text_m" />
+
+    <Switch
+        android:id="@+id/sw_boot_on_weekend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tv_boot_on_weekend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="@dimen/text_m" />
+
+    <TextView
+        android:id="@+id/tt_boot_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/boot_time"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_boot_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_shut_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shut_time"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_shut_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_factory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/factory"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_factory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:inputType="phone"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_net_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_net_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/et_net_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:inputType="phone"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_hddsn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hddsn"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_hddsn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tt_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/qrcode"
+        android:textSize="@dimen/text_m" />
+
+    <EditText
+        android:id="@+id/et_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:focusable="false"
+        android:hint="@string/hint"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btn_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_btn_modify" />
+
+    <Button
+        android:id="@+id/btn_cpinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_btn_cpinfo" />
+
+    <Button
+        android:id="@+id/btn_install_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_btn_install_record" />
+
+</GridLayout>
