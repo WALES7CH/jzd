@@ -1,23 +1,32 @@
 package com.jzd.record.db;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class DbCityService {
-	private DatabaseHelper dbhelper;
+	private DbCityHelper dbcityhelper;
 
 	public DbCityService(Context context) {
-		this.dbhelper = new DatabaseHelper(context);
+		this.dbcityhelper = new DbCityHelper(context);
 	}
 
-	public String[] getCitylist() {
-		SQLiteDatabase localSQLiteDatabase = this.dbhelper.getWritableDatabase();
+	public List<String> getCitylist() {
+		List<String> cityLst = new ArrayList<String>();
+		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getWritableDatabase();
 
-		String sql = "select * from t_city where level = 3 and province = 'ËÄ´¨' ";
+		String sql = "SELECT c.* FROM city c ,province p WHERE c.pid=p.id and p.name = ?";
 
-		localSQLiteDatabase.execSQL(sql, null);
-
-		return new String[5];
+		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "ËÄ´¨Ê¡" });
+		Log.e("TAG", cursor.getCount() + "");
+		while (cursor.moveToNext()) {
+			cityLst.add(cursor.getString(cursor.getColumnIndex("name")));
+		}
+		return cityLst;
 	}
 
 	public String[] getCityAreas(String city) {

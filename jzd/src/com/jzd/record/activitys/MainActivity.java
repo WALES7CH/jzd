@@ -8,7 +8,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.jzd.record.DetailEditActivity;
 import com.jzd.record.R;
 import com.jzd.record.db.DbCityHelper;
 import com.jzd.record.db.DataBaseServer;

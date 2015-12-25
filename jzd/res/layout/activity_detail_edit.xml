@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_name"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/area"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_area"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/address"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_address"
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/detail_address"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_detail_address"
@@ -78,24 +78,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/company_type"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
-    <EditText
-        android:id="@+id/et_company_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/spi_company_type"
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
-        android:focusable="false"
-        android:hint="@string/hint"
-        android:text="" />
+        android:entries="@array/company_type"
+        android:focusable="false" />
 
     <TextView
         android:id="@+id/tt_lan_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lan_type"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_lan_type"
@@ -112,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/boot_on_weekend"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <Switch
         android:id="@+id/sw_boot_on_weekend"
@@ -126,14 +123,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <TextView
         android:id="@+id/tt_boot_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/boot_time"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_boot_time"
@@ -150,7 +147,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/shut_time"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_shut_time"
@@ -167,7 +164,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/factory"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_factory"
@@ -184,7 +181,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/contact"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_contact"
@@ -210,7 +207,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/contact"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_net_contact"
@@ -236,7 +233,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hddsn"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_hddsn"
@@ -253,7 +250,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/qrcode"
-        android:textSize="@dimen/text_m" />
+        android:textSize="@dimen/text_s" />
 
     <EditText
         android:id="@+id/et_qrcode"

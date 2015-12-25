@@ -1,27 +1,32 @@
-package com.jzd.record;
+package com.jzd.record.activitys;
 
-import com.jzd.record.db.CompanyClass;
-import com.jzd.record.db.DataBaseServer;
-
+import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.app.Activity;
+
+import com.jzd.record.R;
+import com.jzd.record.db.CompanyClass;
+import com.jzd.record.db.DataBaseServer;
+import com.jzd.record.utils.SpinnerUtils;
 
 public class DetailEditActivity extends Activity implements OnClickListener {
 	private DataBaseServer db;
 	private Button btn_modify, btn_cpinfo;
 	private TextView tv_boot_on_weekend;
-	private EditText et_name, et_address, et_area, et_detailaddress, et_company_type, et_lan_type, et_boot_time,
-			et_shut_time, et_factory, et_contact, et_net_contact, et_hddsn, et_qrcode, et_net_phone, et_phone;
+	private EditText et_name, et_address, et_area, et_detailaddress, et_lan_type, et_boot_time, et_shut_time,
+			et_factory, et_contact, et_net_contact, et_hddsn, et_qrcode, et_net_phone, et_phone;
 	private Switch sw_boot_on_weekend;
+	private Spinner spi_company_type;
 
 	private int real_id = 0;
 	private boolean installed = true;;
@@ -45,13 +50,14 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		// System.out.println("TAG : " + real_id);
 		CompanyClass company = db.findRecordById(real_id);
 
+		spi_company_type = (Spinner) findViewById(R.id.spi_company_type);
 		tv_boot_on_weekend = (TextView) findViewById(R.id.tv_boot_on_weekend);
 
 		et_name = (EditText) findViewById(R.id.et_name);
 		et_address = (EditText) findViewById(R.id.et_address);
 		et_area = (EditText) findViewById(R.id.et_area);
 		et_detailaddress = (EditText) findViewById(R.id.et_detail_address);
-		et_company_type = (EditText) findViewById(R.id.et_company_type);
+		// et_company_type = (EditText) findViewById(R.id.et_company_type);
 		et_lan_type = (EditText) findViewById(R.id.et_lan_type);
 
 		et_boot_time = (EditText) findViewById(R.id.et_boot_time);
@@ -105,7 +111,8 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			et_detailaddress.setText(company.getCompany_address());
 		}
 		if (company.getCompany_type() != null) {
-			et_company_type.setText(company.getCompany_type());
+			// et_company_type.setText(company.getCompany_type());
+			SpinnerUtils.setSelectedItem(spi_company_type, company.getCompany_type());
 		}
 		if (company.getLan_type() != null) {
 			et_lan_type.setText(company.getLan_type());
@@ -161,8 +168,8 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 	// 编辑状态控制
 	private void btnControl(boolean able) {
 		Toast.makeText(this, " I am in." + able, Toast.LENGTH_SHORT).show();
-		EditText[] ets = { et_name, et_address, et_area, et_detailaddress, et_company_type, et_lan_type, et_boot_time,
-				et_shut_time, et_factory, et_contact, et_net_contact, et_hddsn, et_qrcode, et_net_phone, et_phone };
+		EditText[] ets = { et_name, et_address, et_area, et_detailaddress, et_lan_type, et_boot_time, et_shut_time,
+				et_factory, et_contact, et_net_contact, et_hddsn, et_qrcode, et_net_phone, et_phone };
 		if (!installed) {
 			setEtsFocusable(ets, able);
 			sw_boot_on_weekend.setEnabled(able);
@@ -178,11 +185,13 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		company.setCompany_aera(et_area.getText().toString());
 		company.setBoot_on_weekend(Integer.parseInt(tv_boot_on_weekend.getText().toString()));
 		company.setCompany_address(et_address.getText().toString());
+		company.setCompany_type(spi_company_type.getSelectedItem().toString());
 
 		db = new DataBaseServer(this);
 		boolean success = db.update(company);
 
 		if (success) {
+
 			btn_cpinfo.setText("复制信息");
 		}
 	}

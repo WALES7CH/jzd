@@ -8,12 +8,13 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 import android.util.Log;
 
 import com.jzd.record.R;
 
-public class DbCityHelper {
+public class DbCityHelper extends SQLiteOpenHelper {
 	private final int BUFFER_SIZE = 400000;
 	public static final String DB_NAME = "region.db"; // 保存的数据库文件名
 	public static final String PACKAGE_NAME = "com.jzd.record";
@@ -24,7 +25,7 @@ public class DbCityHelper {
 	private Context context;
 
 	public DbCityHelper(Context context) {
-		this.context = context;
+		super(context, DB_NAME, null, 1);
 	}
 
 	public void openDatabase() {
@@ -61,5 +62,17 @@ public class DbCityHelper {
 
 	public void closeDatabase() {
 		this.database.close();
+	}
+
+	@Override
+	public void onCreate(SQLiteDatabase arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+
 	}
 }

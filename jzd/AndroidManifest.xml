@@ -40,7 +40,7 @@
             android:label="@string/title_activity_detail_edit" >
         </activity>
         <activity
-            android:name="com.jzd.record.DetailEditActivity"
+            android:name="com.jzd.record.activitys.DetailEditActivity"
             android:label="@string/title_activity_detail_edit" >
         </activity>
     </application>

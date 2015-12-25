@@ -11,20 +11,23 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 
-import com.jzd.record.DetailEditActivity;
 import com.jzd.record.R;
 import com.jzd.record.db.DataBaseServer;
+import com.jzd.record.db.DbCityService;
 
 public class InstalledSearchActivity extends Activity implements OnClickListener {
 
 	private Button btn_clean, btn_search;
 	private ListView listview;
 	private EditText et_cityname, et_otherkey;
+	private Spinner spinner_city;
 	private DataBaseServer db;
 	private boolean installed = true;
 	private int[] real_id_arr = null;
@@ -50,6 +53,9 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 		btn_clean = (Button) findViewById(R.id.btn_clean);
 		btn_search = (Button) findViewById(R.id.btn_search);
 		listview = (ListView) findViewById(R.id.list_installed);
+
+		spinner_city = (Spinner) findViewById(R.id.spinner_city);
+		loadItems();
 
 		et_cityname = (EditText) findViewById(R.id.et_cityname);
 		et_otherkey = (EditText) findViewById(R.id.et_otherkey);
@@ -79,6 +85,16 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 			}
 
 		});
+	}
+
+	private void loadItems() {
+
+		List<String> city_list = new DbCityService(this).getCitylist();
+
+		ArrayAdapter<String> arr_adapter;
+		arr_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, city_list);
+		arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_city.setAdapter(arr_adapter);
 	}
 
 	@Override
