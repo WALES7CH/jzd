@@ -240,10 +240,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 	}
 
 	private void setEtsFocusable(EditText[] ets, boolean able) {
-		// Toast.makeText(this, ets.length + "", Toast.LENGTH_SHORT).show();
 		for (int i = 0; i < ets.length; i++) {
-			// Toast.makeText(this, ets[i].getId() + "",
-			// Toast.LENGTH_SHORT).show();
 			ets[i].setFocusableInTouchMode(able);
 		}
 	}
