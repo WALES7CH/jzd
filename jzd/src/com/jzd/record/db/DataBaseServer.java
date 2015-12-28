@@ -84,9 +84,9 @@ public class DataBaseServer {
 			sql += " and company_name like '%" + otherkey + "%' ";
 		}
 		if (installed) {
-			sql += " and harddisk_no != '' ";
+			sql += " and harddisk_no is not null ";
 		} else {
-			sql += " and harddisk_no = null ";
+			sql += " and harddisk_no is null ";
 		}
 		sql += "  order by company_name asc ";
 
