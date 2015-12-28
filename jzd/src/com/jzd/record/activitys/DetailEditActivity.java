@@ -2,6 +2,7 @@ package com.jzd.record.activitys;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -31,7 +32,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 	private Spinner spi_company_type, spi_company_city, spi_company_area;
 
 	private int real_id = 0;
-	private boolean installed = true;;
+	private boolean installed, isnew;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,9 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		db = new DataBaseServer(this);
 		real_id = getIntent().getIntExtra("real_id", -1);
 		installed = getIntent().getBooleanExtra("installed", true);
+		isnew = getIntent().getBooleanExtra("isnew", false);
 
-		if (real_id == -1) {
+		if (real_id == -1 && !isnew) {
 			return;
 		}
 		// System.out.println("TAG : " + real_id);
@@ -80,10 +82,19 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		btn_modify = (Button) findViewById(R.id.btn_modify);
 		btn_cpinfo = (Button) findViewById(R.id.btn_cpinfo);
 
+		Log.e("isnew?", isnew + "");
 		CityAreaUtils.loadCityAreaItems(spi_company_city, this, null);
 		CityAreaUtils.loadCityAreaItems(spi_company_area, this, spi_company_city.getSelectedItem().toString());
 
+		Log.e("isnew?", isnew + "");
+		if (isnew) {// 新装
+
+			this.setTitle("录入安装");
+			btnControl(true);
+		}
+
 		setListeners();
+
 		// 读取并 设置控件值
 		loadRecord();
 
@@ -139,23 +150,26 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			break;
 		default:
 			break;
-
 		}
 	}
 
 	// 编辑状态控制
 	private void btnControl(boolean able) {
-		Toast.makeText(this, " I am in." + able, Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, " I am in." + able, Toast.LENGTH_SHORT).show();
 		EditText[] ets = { et_name, et_address, et_detailaddress, et_boot_time, et_shut_time, et_factory, et_contact,
 				et_net_contact, et_hddsn, et_qrcode, et_net_phone, et_phone };
-		if (!installed) {
+		if (!installed || isnew) {
 			setEtsFocusable(ets, able);
 			sw_boot_on_weekend.setEnabled(able);
 			spi_company_city.setClickable(able);
 			spi_company_area.setClickable(able);
 			spi_company_type.setClickable(able);
 		} else {
-
+			setEtsFocusable(ets, able);
+			sw_boot_on_weekend.setEnabled(able);
+			spi_company_city.setClickable(able);
+			spi_company_area.setClickable(able);
+			spi_company_type.setClickable(able);
 		}
 	}
 
@@ -170,11 +184,23 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		company.setCompany_type(spi_company_type.getSelectedItem().toString());
 
 		db = new DataBaseServer(this);
-		boolean success = db.update(company);
+
+		boolean success = false;
+		String msg = "";
+		if (real_id == -1 && isnew) {
+			success = db.insert(company);
+			msg = "保存成功!";
+		} else {
+			success = db.update(company);
+			msg = "保存成功!";
+		}
 
 		if (success) {
-
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 			btn_cpinfo.setText("复制信息");
+		} else {
+			msg = "保存失败!";
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 		}
 	}
 

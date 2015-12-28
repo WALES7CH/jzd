@@ -18,15 +18,26 @@ public class DataBaseServer {
 		this.dbhelper = new DatabaseHelper(context);
 	}
 
-	public void insert(CompanyClass entity) {
-		SQLiteDatabase localSQLiteDatabase = this.dbhelper.getWritableDatabase();
-		Object[] arrayOfObject = new Object[3];
-		arrayOfObject[0] = entity.getCompany_name();
-		arrayOfObject[1] = entity.getCompany_city();
-		arrayOfObject[2] = entity.getHarddisk_no();
-		localSQLiteDatabase.execSQL("insert into t_install(company_name,company_city,harddisk_no) values(?,?,?)",
-				arrayOfObject);
-		localSQLiteDatabase.close();
+	public boolean insert(CompanyClass entity) {
+		try {
+			SQLiteDatabase localSQLiteDatabase = this.dbhelper.getWritableDatabase();
+			Object[] arrayOfObject = new Object[6];
+			arrayOfObject[0] = entity.getCompany_name();
+			arrayOfObject[1] = entity.getCompany_city();
+			arrayOfObject[2] = entity.getCompany_aera();
+			arrayOfObject[3] = entity.getBoot_on_weekend();
+			arrayOfObject[4] = entity.getCompany_address();
+			arrayOfObject[5] = entity.getCompany_type();
+			localSQLiteDatabase
+					.execSQL(
+							"insert into t_install(company_name,company_city,company_area,boot_on_weekend,company_address,company_type) values(?,?,?,?,?,?)",
+							arrayOfObject);
+			localSQLiteDatabase.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
 	}
 
 	public boolean update(CompanyClass entity) {
@@ -70,14 +81,16 @@ public class DataBaseServer {
 
 		String sql = "select * from t_install where company_city = ? ";
 		if (!otherkey.equals(null) && otherkey != "") {
-			sql += " and harddisk_no like '%" + otherkey + "%' ";
+			sql += " and company_name like '%" + otherkey + "%' ";
 		}
 		if (installed) {
 			sql += " and harddisk_no != '' ";
+		} else {
+			sql += " and harddisk_no = null ";
 		}
 		sql += "  order by company_name asc ";
 
-		// Log.e("TAG", sql);
+		Log.e("TAG", sql);
 
 		Cursor localCursor = localSQLiteDatabase.rawQuery(sql, new String[] { cityname });
 		int i = 0;

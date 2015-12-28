@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.jzd.record.R;
-import com.jzd.record.db.DbCityHelper;
+import com.jzd.record.db.CompanyClass;
 import com.jzd.record.db.DataBaseServer;
+import com.jzd.record.db.DbCityHelper;
 
 public class MainActivity extends Activity implements OnClickListener {
 
 	private Button btn_install, btn_installed, btn_repair_search, btn_install_record, btn_repair_record,
-			btn_import_installed, btn_export_installed;
+			btn_import_installed, btn_export_installed, btn_set_default_city;
 	private DataBaseServer db;
 	private DbCityHelper dbmanager;
 
@@ -39,6 +40,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_repair_record = (Button) findViewById(R.id.btn_repair_record);
 		btn_import_installed = (Button) findViewById(R.id.btn_import_installed);
 		btn_export_installed = (Button) findViewById(R.id.btn_export_installed);
+		btn_set_default_city = (Button) findViewById(R.id.btn_set_default_city);
 
 		btn_install.setOnClickListener(this);
 		btn_installed.setOnClickListener(this);
@@ -48,6 +50,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_repair_record.setOnClickListener(this);
 		btn_import_installed.setOnClickListener(this);
 		btn_export_installed.setOnClickListener(this);
+		btn_set_default_city.setOnClickListener(this);
 	}
 
 	public void DbInit() {
@@ -57,14 +60,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		dbmanager.closeDatabase();
 
 		db = new DataBaseServer(this);
-		/*
-		 * String[] companyTemp = new String("测试1/测试2/测试3").split("/");
-		 * CompanyClass cc; for (int i = 0; i < companyTemp.length; i++) { cc =
-		 * new CompanyClass(); cc.setCompany_name(companyTemp[i]);
-		 * cc.setCompany_city("00" + i); cc.setHarddisk_no("11111111111111" +
-		 * i); db.insert(cc); //info += '\n' + "add to database classes:" +
-		 * c.toString(); }
-		 */
+
+		String[] companyTemp = new String("测试1/测试2/测试3").split("/");
+		CompanyClass cc;
+
+		for (int i = 0; i < companyTemp.length; i++) {
+			cc = new CompanyClass();
+			cc.setCompany_name(companyTemp[i]);
+			cc.setCompany_city("00" + i);
+			cc.setHarddisk_no("11111111111111" + i);
+			// db.insert(cc); // info += '\n' + "add to database classes:" +
+			// cc.toString();
+		}
 
 	}
 
@@ -79,10 +86,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btn_install_search:
 			// Toast.makeText(this, "预安装查询", Toast.LENGTH_SHORT).show();
 			intent.putExtra("installed", false);
+			intent.putExtra("isnew", false);
 			intent.setClass(this, InstalledSearchActivity.class);
 			break;
 		case R.id.btn_installed_search:
 			intent.putExtra("installed", true);
+			intent.putExtra("isnew", false);
 			// Toast.makeText(this, "已安装查询", Toast.LENGTH_SHORT).show();
 			intent.setClass(this, InstalledSearchActivity.class);
 			break;
@@ -93,7 +102,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btn_install_record:
 			// Toast.makeText(this, R.string.str_btn_install_record,
 			// Toast.LENGTH_SHORT).show();
+			intent.putExtra("isnew", true);
 			intent.setClass(this, DetailEditActivity.class);
+			break;
+		case R.id.btn_set_default_city:
+			intent.setClass(this, SetDefaultCityActivity.class);
 			break;
 		default:
 			Toast.makeText(this, "未实现功能", Toast.LENGTH_SHORT).show();

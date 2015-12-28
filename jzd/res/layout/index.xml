@@ -46,4 +46,10 @@
         android:layout_height="wrap_content"
         android:text="@string/export_installed" />
 
+    <Button
+        android:id="@+id/btn_set_default_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_default_city" />
+
 </LinearLayout>

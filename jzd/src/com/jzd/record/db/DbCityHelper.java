@@ -19,13 +19,14 @@ public class DbCityHelper extends SQLiteOpenHelper {
 	public static final String DB_NAME = "region.db"; // 保存的数据库文件名
 	public static final String PACKAGE_NAME = "com.jzd.record";
 	public static final String DB_PATH = "/data" + Environment.getDataDirectory().getAbsolutePath() + "/"
-			+ PACKAGE_NAME + "/databases/"; // 在手机里存放数据库的位置
+			+ PACKAGE_NAME + "/databases"; // 在手机里存放数据库的位置
 
 	private SQLiteDatabase database;
 	private Context context;
 
 	public DbCityHelper(Context context) {
 		super(context, DB_NAME, null, 1);
+		this.context = context;
 	}
 
 	public void openDatabase() {
