@@ -1,6 +1,11 @@
 package com.jzd.record.activitys;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,12 +19,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.jzd.record.R;
 import com.jzd.record.db.CompanyClass;
 import com.jzd.record.db.DataBaseServer;
 import com.jzd.record.utils.CityAreaUtils;
+import com.jzd.record.utils.DefaultSetting;
 import com.jzd.record.utils.SpinnerUtils;
 
 public class DetailEditActivity extends Activity implements OnClickListener {
@@ -101,6 +108,8 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 	}
 
 	private void setListeners() {
+		et_boot_time.setOnClickListener(this);
+		et_shut_time.setOnClickListener(this);
 		btn_modify.setOnClickListener(this);
 		btn_cpinfo.setOnClickListener(this);
 		sw_boot_on_weekend.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -147,6 +156,12 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		case R.id.btn_cpinfo:
 			save();
 			btnControl(false);
+			break;
+		case R.id.et_boot_time:
+			et_setTime(et_boot_time);
+			break;
+		case R.id.et_shut_time:
+			et_setTime(et_shut_time);
 			break;
 		default:
 			break;
@@ -237,9 +252,13 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		}
 		if (company.getBoot_time() != null) {
 			et_boot_time.setText(company.getBoot_time());
+		} else {
+			et_boot_time.setText(DefaultSetting.boot_time);
 		}
 		if (company.getShut_time() != null) {
 			et_shut_time.setText(company.getShut_time());
+		} else {
+			et_shut_time.setText(DefaultSetting.shut_time);
 		}
 		if (company.getFactory() != null) {
 			et_factory.setText(company.getFactory());
@@ -275,4 +294,34 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 
 	}
 
+	private void et_setTime(final EditText et) {
+		int hourOfDay = 0;
+		int minute = 0;
+		switch (et.getId()) {
+		case R.id.et_boot_time:
+			hourOfDay = 8;
+			minute = 30;
+			break;
+		case R.id.et_shut_time:
+			hourOfDay = 18;
+			minute = 00;
+			break;
+		default:
+			hourOfDay = 12;
+			minute = 00;
+			break;
+		}
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+		final Calendar c = Calendar.getInstance();
+		TimePickerDialog timePickerDialog = new TimePickerDialog(DetailEditActivity.this,
+				new TimePickerDialog.OnTimeSetListener() {
+					@Override
+					public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+						et.setText(hourOfDay + ":" + minute);
+					}
+
+				}, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true);
+
+		timePickerDialog.show();
+	}
 }

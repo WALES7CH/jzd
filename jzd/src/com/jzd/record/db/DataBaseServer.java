@@ -1,10 +1,12 @@
 package com.jzd.record.db;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,20 +22,41 @@ public class DataBaseServer {
 
 	public boolean insert(CompanyClass entity) {
 		try {
+
+			ContentValues cv = new ContentValues();
+			cv.put("company_name", entity.getCompany_name());
+			cv.put("company_city", entity.getCompany_city());
+			cv.put("company_address", entity.getCompany_address());
+			cv.put("company_area", entity.getCompany_aera());
+			cv.put("first_contact", entity.getFirst_contact());
+			cv.put("first_phone", entity.getFirst_phone());
+			cv.put("sec_contact", entity.getSec_contact());
+			cv.put("sec_phone", entity.getSec_phone());
+			cv.put("boot_time", entity.getBoot_time());
+			cv.put("shut_time", entity.getShut_time());
+			cv.put("company_type", entity.getCompany_type());
+			cv.put("lan_type", entity.getLan_type());
+			cv.put("boot_on_weekend", entity.getBoot_on_weekend());
+			cv.put("wifi_ssid", entity.getWifi_ssid());
+			cv.put("wifi_password", entity.getWifi_password());
+			cv.put("note1", entity.getNote1());
+			cv.put("note2", entity.getNote2());
+
+			cv.put("creat_date", new Date().toLocaleString());
+			cv.put("chat_date", new Date().toGMTString());
+			cv.put("creator", "");
+
 			SQLiteDatabase localSQLiteDatabase = this.dbhelper.getWritableDatabase();
-			Object[] arrayOfObject = new Object[6];
-			arrayOfObject[0] = entity.getCompany_name();
-			arrayOfObject[1] = entity.getCompany_city();
-			arrayOfObject[2] = entity.getCompany_aera();
-			arrayOfObject[3] = entity.getBoot_on_weekend();
-			arrayOfObject[4] = entity.getCompany_address();
-			arrayOfObject[5] = entity.getCompany_type();
-			localSQLiteDatabase
-					.execSQL(
-							"insert into t_install(company_name,company_city,company_area,boot_on_weekend,company_address,company_type) values(?,?,?,?,?,?)",
-							arrayOfObject);
+
+			Long rtnId = localSQLiteDatabase.insert("t_install", null, cv);
+
 			localSQLiteDatabase.close();
-			return true;
+
+			if (rtnId != -1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			return false;
 		}
@@ -43,24 +66,41 @@ public class DataBaseServer {
 	public boolean update(CompanyClass entity) {
 		try {
 			SQLiteDatabase localSQLiteDatabase = this.dbhelper.getWritableDatabase();
-			Object[] arrayOfObject = new Object[7];
-			arrayOfObject[0] = entity.getCompany_name();
-			arrayOfObject[1] = entity.getCompany_city();
-			arrayOfObject[2] = entity.getCompany_aera();
-			arrayOfObject[3] = entity.getBoot_on_weekend();
-			arrayOfObject[4] = entity.getCompany_address();
-			arrayOfObject[5] = entity.getCompany_type();
-			arrayOfObject[6] = entity.get_id();
+			ContentValues cv = new ContentValues();
+			cv.put("company_name", entity.getCompany_name());
+			cv.put("company_city", entity.getCompany_city());
+			cv.put("company_address", entity.getCompany_address());
+			cv.put("company_area", entity.getCompany_aera());
+			cv.put("first_contact", entity.getFirst_contact());
+			cv.put("first_phone", entity.getFirst_phone());
+			cv.put("sec_contact", entity.getSec_contact());
+			cv.put("sec_phone", entity.getSec_phone());
+			cv.put("boot_time", entity.getBoot_time());
+			cv.put("shut_time", entity.getShut_time());
+			cv.put("company_type", entity.getCompany_type());
+			cv.put("lan_type", entity.getLan_type());
+			cv.put("boot_on_weekend", entity.getBoot_on_weekend());
+			cv.put("wifi_ssid", entity.getWifi_ssid());
+			cv.put("wifi_password", entity.getWifi_password());
+			cv.put("note1", entity.getNote1());
+			cv.put("note2", entity.getNote2());
+
+			cv.put("creat_date", new Date().toLocaleString());
+			cv.put("chat_date", new Date().toGMTString());
+			cv.put("creator", "");
+
+			int t_id = entity.get_id();
 
 			Log.e("TAG", entity.toString());
-
-			localSQLiteDatabase
-					.execSQL(
-							"update t_install set company_name = ?, company_city = ? , company_aera = ? , boot_on_weekend = ? , company_address = ?,company_type = ? where _id = ?",
-							arrayOfObject);
+			int rtnId = localSQLiteDatabase.update("t_install", cv, "_id = ? ", new String[] { t_id + "" });
 
 			localSQLiteDatabase.close();
-			return true;
+
+			if (rtnId != -1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			Log.e("TAG", e.getMessage());
 		}
@@ -124,15 +164,16 @@ public class DataBaseServer {
 	public CompanyClass findRecordById(int _id) {
 		CompanyClass company = new CompanyClass();
 
-		SQLiteDatabase localSQLiteDatabase = this.dbhelper.getWritableDatabase();
+		SQLiteDatabase localSQLiteDatabase = this.dbhelper.getReadableDatabase();
 
 		Cursor localCursor = localSQLiteDatabase.rawQuery("select * from t_install " + " where _id = ?",
 				new String[] { _id + "" });
 
 		while (localCursor.moveToNext()) {
+
 			company.setCompany_name(localCursor.getString(localCursor.getColumnIndex("company_name")));
 			company.setCompany_city(localCursor.getString(localCursor.getColumnIndex("company_city")));
-			company.setCompany_aera(localCursor.getString(localCursor.getColumnIndex("company_aera")));
+			company.setCompany_aera(localCursor.getString(localCursor.getColumnIndex("company_area")));
 			company.setCompany_address(localCursor.getString(localCursor.getColumnIndex("company_address")));
 			company.set_id(localCursor.getInt(localCursor.getColumnIndex("_id")));
 			company.setBoot_on_weekend(localCursor.getInt(localCursor.getColumnIndex("boot_on_weekend")));

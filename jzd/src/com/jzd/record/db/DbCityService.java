@@ -20,7 +20,7 @@ public class DbCityService {
 		List<String> cityLst = new ArrayList<String>();
 		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getReadableDatabase();
 
-		String sql = "SELECT c.* FROM city c ,province p WHERE c.pid=p.id and p.name = ?";
+		String sql = "SELECT c.* FROM city c ,province p WHERE c.pid=p.id and p.name = ? order by isdefault desc";
 
 		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "ËÄ´¨Ê¡" });
 		// Log.e("TAG", cursor.getCount() + "");

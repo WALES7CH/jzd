@@ -97,13 +97,6 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_clean:
-			String str = new String("°ÍÖÐ/¹ãÔª/ÃàÑô");
-
-			String city = str.split("/")[new Random().nextInt(str.split("/").length)];
-
-			// Log.e("TAG", city + " =====>" + new
-			// Random().nextInt(str.split("/").length));
-			et_cityname.setText(city);
 			et_otherkey.setText("");
 			break;
 		case R.id.btn_search:
@@ -118,7 +111,6 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 
 	private void search() {
 		db = new DataBaseServer(this);
-		String cityname = et_cityname.getText().toString();
 		String otherkey = et_otherkey.getText().toString();
 		String city = spinner_city.getSelectedItem().toString();
 
