@@ -3,6 +3,9 @@ package com.jzd.record.activitys;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +31,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -38,10 +40,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jzd.record.R;
-import com.jzd.record.utils.AsynNetUtils;
+import com.jzd.record.utils.ImageLoadUtils;
+import com.jzd.record.utils.ImageLoadUtils.OnLoadImageListener;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -72,7 +74,7 @@ public class LoginActivity extends Activity {
 	private EditText mEmailView;
 	private EditText mPasswordView;
 	private EditText et_code;
-	private ImageView imgView;
+	private ImageView imageView;
 
 	private View mLoginFormView;
 	private View mLoginStatusView;
@@ -93,28 +95,21 @@ public class LoginActivity extends Activity {
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
 		mEmailView.setText(mEmail);
-		imgView = (ImageView) findViewById(R.id.img_code);
+		imageView = (ImageView) findViewById(R.id.img_code);
 		et_code = (EditText) findViewById(R.id.et_code);
-
+		URL url;
 		try {
-			// // imgView.setImageBitmap(getcode());
-			// if (mThread == null) {
-			// mThread = new Thread(runnable);
-			// mThread.start();
-			// // 否则提示："线程已经启动"
-			// } else {
-			// Toast.makeText(getApplication(),
-			// getApplication().getString(R.string.code),
-			// Toast.LENGTH_LONG).show();
-			// }
-
-			AsynNetUtils.get("http://www.baidu.com", new AsynNetUtils.Callback() {
+			url = new URL("http://182.18.5.16:8080/people/cap/cap-code.htm?");
+			ImageLoadUtils.onLoadImage(url, new OnLoadImageListener() {
 				@Override
-				public void onResponse(String response) {
-					mEmailView.setText(response);
+				public void OnLoadImage(Bitmap bitmap, String bitmapPath) {
+					// TODO Auto-generated method stub
+					if (bitmap != null) {
+						imageView.setImageBitmap(bitmap);
+					}
 				}
 			});
-		} catch (Exception e) {
+		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -146,45 +141,6 @@ public class LoginActivity extends Activity {
 		});
 
 	}
-
-	Runnable runnable = new Runnable() {
-		// 重写run()方法，此方法在新的线程中运行
-		@Override
-		public void run() {
-			HttpClient httpClient = new DefaultHttpClient();
-			// 从网络上获取图片
-			HttpGet httpGet = new HttpGet("http://www.oschina.net/img/logo.gif");
-			final Bitmap bitmap;
-			try {
-				HttpResponse httpResponse = httpClient.execute(httpGet);
-				// 解析为图片
-				bitmap = BitmapFactory.decodeStream(httpResponse.getEntity().getContent());
-			} catch (Exception e) {
-				mHandler.obtainMessage(MSG_FAILURE).sendToTarget();// 获取图片失败
-				return;
-			}
-			// 获取图片成功，向UI线程发送MSG_SUCCESS标识和bitmap对象
-			mHandler.obtainMessage(MSG_SUCCESS, bitmap).sendToTarget();
-		}
-	};
-
-	private Handler mHandler = new Handler() {
-		// 重写handleMessage()方法，此方法在UI线程运行
-		@Override
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			// 如果成功，则显示从网络获取到的图片
-			case MSG_SUCCESS:
-				imgView.setImageBitmap((Bitmap) msg.obj);
-				Toast.makeText(getApplication(), getApplication().getString(R.string.code), Toast.LENGTH_LONG).show();
-				break;
-			// 否则提示失败
-			case MSG_FAILURE:
-				Toast.makeText(getApplication(), getApplication().getString(R.string.code), Toast.LENGTH_LONG).show();
-				break;
-			}
-		}
-	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -332,6 +288,41 @@ public class LoginActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 		}
+	}
+
+	/**
+	 * 获取网落图片资源
+	 * 
+	 * @param url
+	 * @return
+	 */
+	public static Bitmap getHttpBitmap(String url) {
+		URL myFileURL;
+		Bitmap bitmap = null;
+		try {
+			myFileURL = new URL(url);
+			// 获得连接
+			HttpURLConnection conn = (HttpURLConnection) myFileURL.openConnection();
+			// 设置超时时间为6000毫秒，conn.setConnectionTiem(0);表示没有时间限制
+			conn.setConnectTimeout(6000);
+			// 连接设置获得数据流
+			conn.setDoInput(true);
+			// 不使用缓存
+			conn.setUseCaches(false);
+			// 这句可有可无，没有影响
+			// conn.connect();
+			// 得到数据流
+			InputStream is = conn.getInputStream();
+			// 解析得到图片
+			bitmap = BitmapFactory.decodeStream(is);
+			// 关闭数据流
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return bitmap;
+
 	}
 
 	private HttpClient client = new DefaultHttpClient();
