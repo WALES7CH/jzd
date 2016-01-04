@@ -44,9 +44,9 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 		Bundle bundle = getIntent().getExtras();
 		installed = bundle.getBoolean("installed");
 		if (installed) {
-			this.setTitle("�Ѱ�װ��ѯ");
+			this.setTitle("已安装查询");
 		} else {
-			this.setTitle("Ԥ��װ��ѯ");
+			this.setTitle("预安装查询");
 		}
 
 		btn_clean = (Button) findViewById(R.id.btn_clean);

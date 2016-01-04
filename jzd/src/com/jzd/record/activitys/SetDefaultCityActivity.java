@@ -54,9 +54,9 @@ public class SetDefaultCityActivity extends Activity {
 				boolean success = dbcityservice.updateDefaultCity(newCity, oldCity);
 				if (success) {
 					tv_old_defalut_city.setText(newCity);
-					Toast.makeText(SetDefaultCityActivity.this, "ÉèÖÃ³É¹¦!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(SetDefaultCityActivity.this, "è®¾ç½®æˆåŠŸ!", Toast.LENGTH_SHORT).show();
 				} else {
-					Toast.makeText(SetDefaultCityActivity.this, "ÉèÖÃÊ§°Ü!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(SetDefaultCityActivity.this, "è®¾ç½®å¤±è´¥!", Toast.LENGTH_SHORT).show();
 				}
 			}
 

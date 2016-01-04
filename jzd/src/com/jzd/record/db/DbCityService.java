@@ -15,23 +15,23 @@ public class DbCityService {
 		this.dbcityhelper = new DbCityHelper(context);
 	}
 
-	// ÕÒ³ÇÊĞ
+	// æ‰¾åŸå¸‚
 	public List<String> getCitylist() {
 		List<String> cityLst = new ArrayList<String>();
 		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getReadableDatabase();
 
 		String sql = "SELECT c.* FROM city c ,province p WHERE c.pid=p.id and p.name = ? order by isdefault desc";
 
-		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "ËÄ´¨Ê¡" });
+		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "å››å·çœ" });
 		// Log.e("TAG", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			cityLst.add(cursor.getString(cursor.getColumnIndex("name")));
 		}
-		// cityLst.add("ÃàÑôÊĞ");
+		// cityLst.add("ç»µé˜³å¸‚");
 		return cityLst;
 	}
 
-	// ÕÒĞĞÕşÇøÓò
+	// æ‰¾è¡Œæ”¿åŒºåŸŸ
 	public List<String> getArealist(String city) {
 		List<String> areaLst = new ArrayList<String>();
 
@@ -44,7 +44,7 @@ public class DbCityService {
 		while (cursor.moveToNext()) {
 			areaLst.add(cursor.getString(cursor.getColumnIndex("name")));
 		}
-		areaLst.add("ÆäËûÇøÏØ");
+		areaLst.add("å…¶ä»–åŒºå¿");
 		return areaLst;
 	}
 
@@ -54,7 +54,7 @@ public class DbCityService {
 
 		String sql = "SELECT c.* FROM city c ,province p WHERE c.pid=p.id and p.name = ? and c.isdefault = 1";
 
-		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "ËÄ´¨Ê¡" });
+		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "å››å·çœ" });
 		// Log.e("TAG", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			defaultCity = cursor.getString(cursor.getColumnIndex("name"));

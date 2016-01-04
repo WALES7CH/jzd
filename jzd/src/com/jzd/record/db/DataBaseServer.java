@@ -108,11 +108,11 @@ public class DataBaseServer {
 
 	}
 
-	// 根据关键字返回一条或多条记录
+	// 鏍规嵁鍏抽敭瀛楄繑鍥炰竴鏉℃垨澶氭潯璁板綍
 	public List<Map<String, Object>> search(String cityname, String otherkey, boolean installed) {
 
 		if (cityname.equals(null) || cityname == "") {
-			Log.println(1, "TAG", "城市为空啊！怎么查？");
+			Log.println(1, "TAG", "鍩庡競涓虹┖鍟婏紒鎬庝箞鏌ワ紵");
 			return null;
 		}
 
@@ -160,7 +160,7 @@ public class DataBaseServer {
 
 	}
 
-	// 根据ID找对应的记录
+	// 鏍规嵁ID鎵惧搴旂殑璁板綍
 	public CompanyClass findRecordById(int _id) {
 		CompanyClass company = new CompanyClass();
 

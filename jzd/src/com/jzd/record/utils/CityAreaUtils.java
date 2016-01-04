@@ -11,7 +11,7 @@ import com.jzd.record.db.DbCityService;
 
 public class CityAreaUtils {
 
-	// ¼ÓÔØµØÖÝÊÐÁÐ±í
+	// åŠ è½½åœ°å·žå¸‚åˆ—è¡¨
 	public static void loadCityAreaItems(Spinner spinner, Context context, String city) {
 
 		List<String> list = new ArrayList<String>();

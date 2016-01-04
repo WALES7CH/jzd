@@ -48,5 +48,6 @@
     <string name="str_btn_install_record">安装登记</string>
     <string name="title_activity_set_default_city">SetDefaultCityActivity</string>
     <string name="set_default_city">设置默认安装城市</string>
+    <string name="login">登陆</string>
 
 </resources>

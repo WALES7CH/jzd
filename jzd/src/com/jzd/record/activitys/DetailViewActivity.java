@@ -190,7 +190,7 @@ public class DetailViewActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_modify:
 			btnControl(true);
-			btn_cpinfo.setText("±£´æ¸´ÖÆ");
+			btn_cpinfo.setText("ä¿å­˜å¤åˆ¶");
 			break;
 		case R.id.btn_cpinfo:
 			save();
@@ -202,7 +202,7 @@ public class DetailViewActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	// ±à¼­×´Ì¬¿ØÖÆ
+	// ç¼–è¾‘çŠ¶æ€æ§åˆ¶
 	private void btnControl(boolean able) {
 		Toast.makeText(this, " I am in." + able, Toast.LENGTH_SHORT).show();
 		EditText[] ets = { et_name, et_address, et_area, et_detailaddress, et_company_type, et_lan_type, et_boot_time,
@@ -227,7 +227,7 @@ public class DetailViewActivity extends Activity implements OnClickListener {
 		boolean success = db.update(company);
 
 		if (success) {
-			btn_cpinfo.setText("¸´ÖÆĞÅÏ¢");
+			btn_cpinfo.setText("å¤åˆ¶ä¿¡æ¯");
 		}
 	}
 

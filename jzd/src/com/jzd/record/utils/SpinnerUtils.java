@@ -6,7 +6,7 @@ import android.widget.Spinner;
 public class SpinnerUtils {
 
 	/**
-	 * Í¨¹ıÑ¡ÏîÖµ(ÏÔÊ¾µÄÖµ)À´ÉèÖÃÄ¬ÈÏÑ¡ÖĞ 2015-12-25 @author WALES7
+	 * é€šè¿‡é€‰é¡¹å€¼(æ˜¾ç¤ºçš„å€¼)æ¥è®¾ç½®é»˜è®¤é€‰ä¸­ 2015-12-25 @author WALES7
 	 * 
 	 * @param spinner
 	 * @param value

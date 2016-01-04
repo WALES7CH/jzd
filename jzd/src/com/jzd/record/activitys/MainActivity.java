@@ -16,7 +16,7 @@ import com.jzd.record.db.DbCityHelper;
 public class MainActivity extends Activity implements OnClickListener {
 
 	private Button btn_install, btn_installed, btn_repair_search, btn_install_record, btn_repair_record,
-			btn_import_installed, btn_export_installed, btn_set_default_city;
+			btn_import_installed, btn_export_installed, btn_set_default_city, btn_login;
 	private DataBaseServer db;
 	private DbCityHelper dbmanager;
 
@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private void init() {
 
-		// ³õÊ¼»¯Êı¾İ¿â
+		// åˆå§‹åŒ–æ•°æ®åº“
 		DbInit();
 
 		btn_install = (Button) findViewById(R.id.btn_install_search);
@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_import_installed = (Button) findViewById(R.id.btn_import_installed);
 		btn_export_installed = (Button) findViewById(R.id.btn_export_installed);
 		btn_set_default_city = (Button) findViewById(R.id.btn_set_default_city);
+		btn_login = (Button) findViewById(R.id.btn_login);
 
 		btn_install.setOnClickListener(this);
 		btn_installed.setOnClickListener(this);
@@ -51,6 +52,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_import_installed.setOnClickListener(this);
 		btn_export_installed.setOnClickListener(this);
 		btn_set_default_city.setOnClickListener(this);
+		btn_login.setOnClickListener(this);
 	}
 
 	public void DbInit() {
@@ -61,7 +63,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		db = new DataBaseServer(this);
 
-		String[] companyTemp = new String("²âÊÔ1/²âÊÔ2/²âÊÔ3").split("/");
+		String[] companyTemp = new String("æµ‹è¯•1/æµ‹è¯•2/æµ‹è¯•3").split("/");
 		CompanyClass cc;
 
 		for (int i = 0; i < companyTemp.length; i++) {
@@ -84,7 +86,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.btn_install_search:
-			// Toast.makeText(this, "Ô¤°²×°²éÑ¯", Toast.LENGTH_SHORT).show();
+			// Toast.makeText(this, "é¢„å®‰è£…æŸ¥è¯¢", Toast.LENGTH_SHORT).show();
 			intent.putExtra("installed", false);
 			intent.putExtra("isnew", false);
 			intent.setClass(this, InstalledSearchActivity.class);
@@ -92,11 +94,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btn_installed_search:
 			intent.putExtra("installed", true);
 			intent.putExtra("isnew", false);
-			// Toast.makeText(this, "ÒÑ°²×°²éÑ¯", Toast.LENGTH_SHORT).show();
+			// Toast.makeText(this, "å·²å®‰è£…æŸ¥è¯¢", Toast.LENGTH_SHORT).show();
 			intent.setClass(this, InstalledSearchActivity.class);
 			break;
 		case R.id.btn_repair_record:
-			// Toast.makeText(this, "Ñ²¼ìÎ¬ĞŞÂ¼Èë", Toast.LENGTH_SHORT).show();
+			// Toast.makeText(this, "å·¡æ£€ç»´ä¿®å½•å…¥", Toast.LENGTH_SHORT).show();
 			intent.setClass(this, RepairSearchActivity.class);
 			break;
 		case R.id.btn_install_record:
@@ -108,8 +110,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btn_set_default_city:
 			intent.setClass(this, SetDefaultCityActivity.class);
 			break;
+		case R.id.btn_login:
+			intent.setClass(this, LoginActivity.class);
+			break;
 		default:
-			Toast.makeText(this, "Î´ÊµÏÖ¹¦ÄÜ", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "æœªå®ç°åŠŸèƒ½", Toast.LENGTH_SHORT).show();
 			break;
 		}
 

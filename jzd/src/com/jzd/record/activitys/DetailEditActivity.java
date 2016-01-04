@@ -50,7 +50,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 	}
 
 	/*
-	 * ³õÊ¼»¯ ÕÒ³öËùÓĞµÄ¿Ø¼ş ²¢¿ªÊ¼ÉèÖÃ¿Ø¼ş
+	 * åˆå§‹åŒ– æ‰¾å‡ºæ‰€æœ‰çš„æ§ä»¶ å¹¶å¼€å§‹è®¾ç½®æ§ä»¶
 	 */
 	private void init() {
 		db = new DataBaseServer(this);
@@ -89,20 +89,20 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		btn_modify = (Button) findViewById(R.id.btn_modify);
 		btn_cpinfo = (Button) findViewById(R.id.btn_cpinfo);
 
-		Log.e("isnew?", isnew + "");
+		//Log.e("isnew?", isnew + "");
 		CityAreaUtils.loadCityAreaItems(spi_company_city, this, null);
 		CityAreaUtils.loadCityAreaItems(spi_company_area, this, spi_company_city.getSelectedItem().toString());
 
-		Log.e("isnew?", isnew + "");
-		if (isnew) {// ĞÂ×°
+		//Log.e("isnew?", isnew + "");
+		if (isnew) {// æ–°è£…
 
-			this.setTitle("Â¼Èë°²×°");
+			this.setTitle("å½•å…¥å®‰è£…");
 			btnControl(true);
 		}
 
 		setListeners();
 
-		// ¶ÁÈ¡²¢ ÉèÖÃ¿Ø¼şÖµ
+		// è¯»å–å¹¶ è®¾ç½®æ§ä»¶å€¼
 		loadRecord();
 
 	}
@@ -151,7 +151,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_modify:
 			btnControl(true);
-			btn_cpinfo.setText("±£´æ¸´ÖÆ");
+			btn_cpinfo.setText("ä¿å­˜å¤åˆ¶");
 			break;
 		case R.id.btn_cpinfo:
 			save();
@@ -168,7 +168,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	// ±à¼­×´Ì¬¿ØÖÆ
+	// ç¼–è¾‘çŠ¶æ€æ§åˆ¶
 	private void btnControl(boolean able) {
 		// Toast.makeText(this, " I am in." + able, Toast.LENGTH_SHORT).show();
 		EditText[] ets = { et_name, et_address, et_detailaddress, et_boot_time, et_shut_time, et_factory, et_contact,
@@ -204,17 +204,17 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		String msg = "";
 		if (real_id == -1 && isnew) {
 			success = db.insert(company);
-			msg = "±£´æ³É¹¦!";
+			msg = "ä¿å­˜æˆåŠŸ!";
 		} else {
 			success = db.update(company);
-			msg = "±£´æ³É¹¦!";
+			msg = "ä¿å­˜æˆåŠŸ!";
 		}
 
 		if (success) {
 			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-			btn_cpinfo.setText("¸´ÖÆĞÅÏ¢");
+			btn_cpinfo.setText("å¤åˆ¶ä¿¡æ¯");
 		} else {
-			msg = "±£´æÊ§°Ü!";
+			msg = "ä¿å­˜å¤±è´¥!";
 			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 		}
 	}
