@@ -122,7 +122,7 @@ public final class R {
         public static final int spi_company_area=0x7f070012;
         public static final int spi_company_city=0x7f070011;
         public static final int spi_company_type=0x7f070018;
-        public static final int spi_default_city=0x7f070069;
+        public static final int spi_default_city=0x7f070067;
         public static final int spi_factory=0x7f070023;
         public static final int spi_hddsn=0x7f07002b;
         public static final int spi_lan_type=0x7f07001a;
@@ -157,7 +157,7 @@ public final class R {
         public static final int tv_harddisk_no=0x7f07007e;
         public static final int tv_index=0x7f07007b;
         public static final int tv_name=0x7f070041;
-        public static final int tv_old_defalut_city=0x7f070067;
+        public static final int tv_old_defalut_city=0x7f070069;
         public static final int tv_otherkey=0x7f070071;
         public static final int tv_real_id=0x7f07007c;
         public static final int tv_title=0x7f070066;

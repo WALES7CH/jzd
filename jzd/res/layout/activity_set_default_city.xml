@@ -17,31 +17,31 @@
         android:text="设置默认安装城市"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/tv_old_defalut_city"
+    <Spinner
+        android:id="@+id/spi_default_city"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="15dp"
-        android:text="@string/app_name" />
+        android:layout_alignLeft="@+id/btn_set_default_city"
+        android:layout_below="@id/tv_title"
+        android:layout_marginBottom="15dp" />
 
     <Button
         android:id="@+id/btn_set_default_city"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_old_defalut_city"
         android:layout_alignLeft="@+id/tv_old_defalut_city"
+        android:layout_below="@id/spi_default_city"
         android:layout_marginBottom="15dp"
         android:text="设置" />
 
-    <Spinner
-        android:id="@+id/spi_default_city"
+    <TextView
+        android:id="@+id/tv_old_defalut_city"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_set_default_city"
-        android:layout_alignLeft="@+id/btn_set_default_city"
-        android:layout_marginBottom="15dp" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/btn_set_default_city"
+        android:layout_marginBottom="15dp"
+        android:text="@string/app_name" />
 
     <EditText
         android:id="@+id/et_addhddsn"

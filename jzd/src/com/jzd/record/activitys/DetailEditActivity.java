@@ -233,7 +233,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		company.setShut_time(et_shut_time.getText().toString());
 		company.setLan_type(spi_lan_type.getSelectedItem().toString());
 		company.setHddsn(spi_hddsn.getSelectedItem().toString()
-				+ et_hddsn.getText().toString());
+				+ et_hddsn.getText().toString().toUpperCase());
 		// Log.e("TAG HDDSN", company.getHddsn());
 		company.setmain_contact(et_main_contact.getText().toString());
 		company.setmain_phone(et_main_phone.getText().toString());
@@ -367,9 +367,6 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		}
 		if (company.getnet_phone() != null) {
 			et_net_phone.setText(company.getnet_phone());
-		}
-		if (company.getHddsn() != null) {
-			et_hddsn.setText(company.getHddsn());
 		}
 		if (company.getQrcode() != null) {
 			et_qrcode.setText(company.getQrcode());
