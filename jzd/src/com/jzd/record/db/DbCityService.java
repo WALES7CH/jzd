@@ -78,5 +78,40 @@ public class DbCityService {
 			return false;
 		}
 	}
+	
+	/**
+	 * 新增硬盘号前缀
+	 * @param hddsn
+	 * @return
+	 */
+	public boolean InsertHddsn(String hddsn,String factory) {
+		try {
+			SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getWritableDatabase();
+
+			String insertSql = "insert into t_hddsn(hddsn,factory) values(?,?)";
+
+			localSQLiteDatabase.execSQL(insertSql, new String[] { hddsn,factory });
+			localSQLiteDatabase.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	// 列出所有的硬盘号前缀
+		public List<String> getHddsnlist() {
+			List<String> hddsnLst = new ArrayList<String>();
+
+			SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getReadableDatabase();
+
+			String sql = "SELECT hddsn from t_hddsn";
+
+			Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { });
+			// Log.e("TAG", cursor.getCount() + "");
+			while (cursor.moveToNext()) {
+				hddsnLst.add(cursor.getString(cursor.getColumnIndex("hddsn")));
+			}
+			return hddsnLst;
+		}
 
 }

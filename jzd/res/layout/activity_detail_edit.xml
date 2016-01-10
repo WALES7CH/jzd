@@ -5,6 +5,8 @@
     android:columnCount="3"
     android:rowCount="10" >
 
+    <!-- 单位名称 -->
+
     <TextView
         android:id="@+id/tt_name"
         android:layout_width="wrap_content"
@@ -21,6 +23,7 @@
         android:focusable="false"
         android:hint="@string/str_hint"
         android:text="" />
+    <!-- 单位城市 行政区域 -->
 
     <TextView
         android:id="@+id/tt_area"
@@ -38,6 +41,7 @@
         android:id="@+id/spi_company_area"
         android:layout_gravity="fill"
         android:clickable="false" />
+    <!-- 街道地址 -->
 
     <TextView
         android:id="@+id/tt_address"
@@ -56,15 +60,17 @@
         android:hint="@string/hint"
         android:text="" />
 
+    <!-- 设备安放具体位置 -->
+
     <TextView
-        android:id="@+id/tt_detail_address"
+        android:id="@+id/tt_devicelocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/detail_address"
         android:textSize="@dimen/text_s" />
 
     <EditText
-        android:id="@+id/et_detail_address"
+        android:id="@+id/et_devicelocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnSpan="2"
@@ -72,6 +78,7 @@
         android:focusable="false"
         android:hint="@string/hint"
         android:text="" />
+    <!-- 单位性质 -->
 
     <TextView
         android:id="@+id/tt_company_type"
@@ -85,7 +92,9 @@
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
         android:clickable="false"
+        android:focusable="false"
         android:entries="@array/company_type" />
+    <!-- 连线方式 -->
 
     <TextView
         android:id="@+id/tt_lan_type"
@@ -94,15 +103,14 @@
         android:text="@string/lan_type"
         android:textSize="@dimen/text_s" />
 
-    <EditText
-        android:id="@+id/et_lan_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/spi_lan_type"
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
+        android:clickable="false"
         android:focusable="false"
-        android:hint="@string/hint"
-        android:text="" />
+        android:entries="@array/lan_type" />
+    <!-- 周末是否开机 -->
 
     <TextView
         android:id="@+id/tt_boot_on_weekend"
@@ -124,6 +132,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="@dimen/text_s" />
+    <!-- 开机时间 -->
 
     <TextView
         android:id="@+id/tt_boot_time"
@@ -141,6 +150,7 @@
         android:focusable="false"
         android:hint="@string/hint"
         android:text="" />
+    <!-- 关机时间 -->
 
     <TextView
         android:id="@+id/tt_shut_time"
@@ -158,6 +168,7 @@
         android:focusable="false"
         android:hint="@string/hint"
         android:text="" />
+    <!-- 设备厂家 -->
 
     <TextView
         android:id="@+id/tt_factory"
@@ -166,15 +177,13 @@
         android:text="@string/factory"
         android:textSize="@dimen/text_s" />
 
-    <EditText
-        android:id="@+id/et_factory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/spi_factory"
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
-        android:focusable="false"
-        android:hint="@string/hint"
-        android:text="" />
+        android:clickable="false"
+        android:entries="@array/factorys" />
+    <!-- 单位主要负责人 -->
 
     <TextView
         android:id="@+id/tt_contact"
@@ -201,6 +210,7 @@
         android:hint="@string/hint"
         android:inputType="phone"
         android:text="" />
+    <!-- 单位网络联系人 -->
 
     <TextView
         android:id="@+id/tt_net_contact"
@@ -227,6 +237,7 @@
         android:hint="@string/hint"
         android:inputType="phone"
         android:text="" />
+    <!-- 硬盘号 -->
 
     <TextView
         android:id="@+id/tt_hddsn"
@@ -235,15 +246,22 @@
         android:text="@string/hddsn"
         android:textSize="@dimen/text_s" />
 
+    <Spinner
+        android:id="@+id/spi_hddsn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false" />
+
     <EditText
         android:id="@+id/et_hddsn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
+        android:layout_columnSpan="1"
         android:layout_gravity="fill"
         android:focusable="false"
         android:hint="@string/hint"
         android:text="" />
+    <!-- 二维码 -->
 
     <TextView
         android:id="@+id/tt_qrcode"
@@ -261,6 +279,7 @@
         android:focusable="false"
         android:hint="@string/hint"
         android:text="" />
+    <!-- 按钮区域 -->
 
     <Button
         android:id="@+id/btn_modify"
@@ -278,6 +297,7 @@
         android:id="@+id/btn_install_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/str_btn_install_record" />
+        android:text="@string/str_btn_install_record"
+        android:visibility="gone" />
 
 </GridLayout>

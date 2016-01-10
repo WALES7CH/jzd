@@ -20,8 +20,8 @@ import android.widget.Toast;
 import com.jzd.record.R;
 
 public class ThreadHandlerActivity extends Activity {
-	private static final int MSG_SUCCESS = 0;// »ñÈ¡Í¼Æ¬³É¹¦µÄ±êÊ¶
-	private static final int MSG_FAILURE = 1;// »ñÈ¡Í¼Æ¬Ê§°ÜµÄ±êÊ¶
+	private static final int MSG_SUCCESS = 0;// ï¿½ï¿½È¡Í¼Æ¬ï¿½É¹ï¿½ï¿½Ä±ï¿½Ê¶
+	private static final int MSG_FAILURE = 1;// ï¿½ï¿½È¡Í¼Æ¬Ê§ï¿½ÜµÄ±ï¿½Ê¶
 	private ImageView mImageView;
 	private Button mButton;
 	private Thread mThread;
@@ -35,11 +35,11 @@ public class ThreadHandlerActivity extends Activity {
 		mButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Èç¹ûÏß³Ì»¹Ã»Æô¶¯£¬ÔòÆô¶¯ÐÂµÄÏß³Ì
+				// ï¿½ï¿½ï¿½ï¿½ß³Ì»ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ß³ï¿½
 				if (mThread == null) {
 					mThread = new Thread(runnable);
 					mThread.start();
-					// ·ñÔòÌáÊ¾£º"Ïß³ÌÒÑ¾­Æô¶¯"
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½"ï¿½ß³ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½"
 				} else {
 					Toast.makeText(getApplication(), getApplication().getString(R.string.code), Toast.LENGTH_LONG)
 							.show();
@@ -49,16 +49,16 @@ public class ThreadHandlerActivity extends Activity {
 	}
 
 	private Handler mHandler = new Handler() {
-		// ÖØÐ´handleMessage()·½·¨£¬´Ë·½·¨ÔÚUIÏß³ÌÔËÐÐ
+		// ï¿½ï¿½Ð´handleMessage()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½UIï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-			// Èç¹û³É¹¦£¬ÔòÏÔÊ¾´ÓÍøÂç»ñÈ¡µ½µÄÍ¼Æ¬
+			// ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 			case MSG_SUCCESS:
 				mImageView.setImageBitmap((Bitmap) msg.obj);
 				Toast.makeText(getApplication(), getApplication().getString(R.string.code), Toast.LENGTH_LONG).show();
 				break;
-			// ·ñÔòÌáÊ¾Ê§°Ü
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ê§ï¿½ï¿½
 			case MSG_FAILURE:
 				Toast.makeText(getApplication(), getApplication().getString(R.string.code), Toast.LENGTH_LONG).show();
 				break;
@@ -66,22 +66,22 @@ public class ThreadHandlerActivity extends Activity {
 		}
 	};
 	Runnable runnable = new Runnable() {
-		// ÖØÐ´run()·½·¨£¬´Ë·½·¨ÔÚÐÂµÄÏß³ÌÖÐÔËÐÐ
+		// ï¿½ï¿½Ð´run()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		@Override
 		public void run() {
 			HttpClient httpClient = new DefaultHttpClient();
-			// ´ÓÍøÂçÉÏ»ñÈ¡Í¼Æ¬
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½È¡Í¼Æ¬
 			HttpGet httpGet = new HttpGet("http://www.oschina.net/img/logo.gif");
 			final Bitmap bitmap;
 			try {
 				HttpResponse httpResponse = httpClient.execute(httpGet);
-				// ½âÎöÎªÍ¼Æ¬
+				// ï¿½ï¿½ï¿½ï¿½ÎªÍ¼Æ¬
 				bitmap = BitmapFactory.decodeStream(httpResponse.getEntity().getContent());
 			} catch (Exception e) {
-				mHandler.obtainMessage(MSG_FAILURE).sendToTarget();// »ñÈ¡Í¼Æ¬Ê§°Ü
+				mHandler.obtainMessage(MSG_FAILURE).sendToTarget();// ï¿½ï¿½È¡Í¼Æ¬Ê§ï¿½ï¿½
 				return;
 			}
-			// »ñÈ¡Í¼Æ¬³É¹¦£¬ÏòUIÏß³Ì·¢ËÍMSG_SUCCESS±êÊ¶ºÍbitmap¶ÔÏó
+			// ï¿½ï¿½È¡Í¼Æ¬ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½UIï¿½ß³Ì·ï¿½ï¿½ï¿½MSG_SUCCESSï¿½ï¿½Ê¶ï¿½ï¿½bitmapï¿½ï¿½ï¿½ï¿½
 			mHandler.obtainMessage(MSG_SUCCESS, bitmap).sendToTarget();
 		}
 	};

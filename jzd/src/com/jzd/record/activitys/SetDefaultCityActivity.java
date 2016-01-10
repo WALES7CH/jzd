@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +19,9 @@ import com.jzd.record.utils.SpinnerUtils;
 public class SetDefaultCityActivity extends Activity {
 
 	private TextView tv_old_defalut_city;
+	private EditText et_addhddsn,et_hhd_factory;
 	private Spinner spi_default_city;
-	private Button btn_set_default_city;
+	private Button btn_set_default_city,btn_addhddsn;
 	private DbCityService dbcityservice;
 
 	@Override
@@ -42,6 +44,10 @@ public class SetDefaultCityActivity extends Activity {
 		tv_old_defalut_city = (TextView) findViewById(R.id.tv_old_defalut_city);
 		spi_default_city = (Spinner) findViewById(R.id.spi_default_city);
 		btn_set_default_city = (Button) findViewById(R.id.btn_set_default_city);
+		
+		btn_addhddsn = (Button) findViewById(R.id.btn_addhddsn);
+		et_addhddsn = (EditText) findViewById(R.id.et_addhddsn);
+		et_hhd_factory = (EditText) findViewById(R.id.et_hdd_factory);
 
 		CityAreaUtils.loadCityAreaItems(spi_default_city, this, null);
 
@@ -60,6 +66,29 @@ public class SetDefaultCityActivity extends Activity {
 				}
 			}
 
+		});
+		
+		
+		
+		
+		//添加硬盘号前缀
+		btn_addhddsn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String str_addhddsn = et_addhddsn.getText().toString();
+				String str_hdd_factory = et_hhd_factory.getText().toString();
+				if(str_addhddsn.equals("")|| str_addhddsn == null ||str_addhddsn.length() < 4)
+					return;
+				boolean success = dbcityservice.InsertHddsn(str_addhddsn, str_hdd_factory);
+				if (success) {
+					Toast.makeText(SetDefaultCityActivity.this, "添加成功!", Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(SetDefaultCityActivity.this, "添加失败!", Toast.LENGTH_SHORT).show();
+				}
+			}
+			
 		});
 
 		loadDefaultValue();

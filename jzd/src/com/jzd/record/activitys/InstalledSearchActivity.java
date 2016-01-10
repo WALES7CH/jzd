@@ -127,7 +127,7 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 		SimpleAdapter adapter = null;
 		if (this.installed) {
 			adapter = new SimpleAdapter(this, list, R.layout.list_item, new String[] { "index", "real_id",
-					"company_name", "harddisk_no" }, new int[] { R.id.tv_index, R.id.tv_real_id, R.id.tv_company_name,
+					"company_name", "hddsn" }, new int[] { R.id.tv_index, R.id.tv_real_id, R.id.tv_company_name,
 					R.id.tv_harddisk_no });
 
 			listview.setAdapter(adapter);

@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-	private static final String DB_NAME = "jzd.db"; // ˝æ›ø‚√˚≥∆
-    private static final int version = 1; // ˝æ›ø‚∞Ê±æ
+	private static final String DB_NAME = "jzd.db"; //Êï∞ÊçÆÂ∫ìÂêçÁß∞
+    private static final int version = 1; //Êï∞ÊçÆÂ∫ìÁâàÊú¨
 	
 	public DatabaseHelper(Context context) {
 		super(context,DB_NAME,null,version);
@@ -25,10 +25,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " company_city  VARCHAR(32) NOT NULL,"
 				+ " company_address  VARCHAR(512),"
 				+ " company_area  VARCHAR(128) NOT NULL,"
-				+ " first_contact  VARCHAR(128),"
-				+ " first_phone  INTEGER,"
-				+ " sec_contact  VARCHAR(128),"
-				+ " sec_phone  INTEGER,"
+				+ " device_location VARCHAR(512),"
+				+ " main_contact  VARCHAR(128),"
+				+ " main_phone  INTEGER,"
+				+ " net_contact  VARCHAR(128),"
+				+ " net_phone  INTEGER,"
 				+ " boot_time  VARCHAR(64),"
 				+ " shut_time  VARCHAR(64),"
 				+ " creat_date  VARCHAR(64) NOT NULL,"
@@ -39,8 +40,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " factory  VARCHAR(64),"
 				+ " lan_type  VARCHAR(64),"
 				+ " boot_on_weekend  INTEGER DEFAULT 0,"
-				+ " harddisk_no  VARCHAR(64),"
-				+ " qrcode_no  VARCHAR(128),"
+				+ " hddsn  VARCHAR(64),"
+				+ " qrcode  VARCHAR(128),"
 				+ " wifi_ssid  VARCHAR(128),"
 				+ " wifi_password  VARCHAR(128),"
 				+ " creator  VARCHAR(128),"

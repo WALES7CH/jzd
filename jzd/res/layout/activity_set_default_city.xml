@@ -43,4 +43,25 @@
         android:layout_alignLeft="@+id/btn_set_default_city"
         android:layout_marginBottom="15dp" />
 
+    <EditText
+        android:id="@+id/et_addhddsn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_old_defalut_city"
+        android:hint="hddsn" />
+
+    <EditText
+        android:id="@+id/et_hdd_factory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_addhddsn"
+        android:hint="factory" />
+
+    <Button
+        android:id="@+id/btn_addhddsn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_hdd_factory"
+        android:text="Add HddSn" />
+
 </RelativeLayout>

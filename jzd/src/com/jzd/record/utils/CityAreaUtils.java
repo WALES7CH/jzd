@@ -12,7 +12,8 @@ import com.jzd.record.db.DbCityService;
 public class CityAreaUtils {
 
 	// 加载地州市列表
-	public static void loadCityAreaItems(Spinner spinner, Context context, String city) {
+	public static void loadCityAreaItems(Spinner spinner, Context context,
+			String city) {
 
 		List<String> list = new ArrayList<String>();
 
@@ -22,8 +23,23 @@ public class CityAreaUtils {
 			list = new DbCityService(context).getCitylist();
 		}
 		ArrayAdapter<String> arr_adapter;
-		arr_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
-		arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		arr_adapter = new ArrayAdapter<String>(context,
+				android.R.layout.simple_spinner_item, list);
+		arr_adapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(arr_adapter);
+	}
+
+	// 加载硬盘号前缀列表
+	public static void loadHddsnItems(Spinner spinner, Context context) {
+		List<String> list = new ArrayList<String>();
+
+		list = new DbCityService(context).getHddsnlist();
+		ArrayAdapter<String> arr_adapter;
+		arr_adapter = new ArrayAdapter<String>(context,
+				android.R.layout.simple_spinner_item, list);
+		arr_adapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(arr_adapter);
 	}
 }

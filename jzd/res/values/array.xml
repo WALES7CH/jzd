@@ -11,5 +11,19 @@
         <item>国企</item>
         <item>机场</item>
     </string-array>
+    <string-array name="lan_type">
+        <item>有线</item>
+        <item>ADSL拨号</item>
+        <item>WiFi</item>
+        <item>联通3G卡</item>
+        <item>电信3G卡</item>
+    </string-array>
+    <string-array name="factorys">
+        <item>创维</item>
+        <item>清华同方</item>
+        <item>唯瑞新源</item>
+        <item>瑞新</item>
+        <item>冠众</item>
+    </string-array>
 
 </resources>

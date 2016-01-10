@@ -78,7 +78,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			cc = new CompanyClass();
 			cc.setCompany_name(companyTemp[i]);
 			cc.setCompany_city("00" + i);
-			cc.setHarddisk_no("11111111111111" + i);
+			cc.setHddsn("W4X0523" + i);
 			// db.insert(cc); // info += '\n' + "add to database classes:" +
 			// cc.toString();
 		}

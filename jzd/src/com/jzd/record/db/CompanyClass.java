@@ -3,9 +3,17 @@ package com.jzd.record.db;
 public class CompanyClass {
 
 	private int _id, boot_on_weekend;
-	private String company_name, company_city, company_address, company_aera, first_contact, sec_contact, boot_time,
-			shut_time, company_type, lan_type, harddisk_no, qrcode_no, wifi_ssid, wifi_password, note1, note2, factory,
-			chat_date, install_date, create_date, modify_date, sec_phone, first_phone;
+	private String company_name, company_city, company_address, device_location,company_aera, main_contact, net_contact, boot_time,
+			shut_time, company_type, lan_type, hddsn, qrcode, wifi_ssid, wifi_password, note1, note2, factory,
+			chat_date, install_date, create_date, modify_date, net_phone, main_phone;
+
+	public String getDevice_location() {
+		return device_location;
+	}
+
+	public void setDevice_location(String device_location) {
+		this.device_location = device_location;
+	}
 
 	public String getCreate_date() {
 		return create_date;
@@ -55,20 +63,20 @@ public class CompanyClass {
 		this._id = _id;
 	}
 
-	public String getFirst_phone() {
-		return first_phone;
+	public String getmain_phone() {
+		return main_phone;
 	}
 
-	public void setFirst_phone(String first_phone) {
-		this.first_phone = first_phone;
+	public void setmain_phone(String main_phone) {
+		this.main_phone = main_phone;
 	}
 
-	public String getSec_phone() {
-		return sec_phone;
+	public String getnet_phone() {
+		return net_phone;
 	}
 
-	public void setSec_phone(String sec_phone) {
-		this.sec_phone = sec_phone;
+	public void setnet_phone(String net_phone) {
+		this.net_phone = net_phone;
 	}
 
 	public int getBoot_on_weekend() {
@@ -111,20 +119,20 @@ public class CompanyClass {
 		this.company_aera = company_aera;
 	}
 
-	public String getFirst_contact() {
-		return first_contact;
+	public String getmain_contact() {
+		return main_contact;
 	}
 
-	public void setFirst_contact(String first_contact) {
-		this.first_contact = first_contact;
+	public void setmain_contact(String main_contact) {
+		this.main_contact = main_contact;
 	}
 
-	public String getSec_contact() {
-		return sec_contact;
+	public String getnet_contact() {
+		return net_contact;
 	}
 
-	public void setSec_contact(String sec_contact) {
-		this.sec_contact = sec_contact;
+	public void setnet_contact(String net_contact) {
+		this.net_contact = net_contact;
 	}
 
 	public String getBoot_time() {
@@ -159,20 +167,20 @@ public class CompanyClass {
 		this.lan_type = lan_type;
 	}
 
-	public String getHarddisk_no() {
-		return harddisk_no;
+	public String getHddsn() {
+		return hddsn;
 	}
 
-	public void setHarddisk_no(String harddisk_no) {
-		this.harddisk_no = harddisk_no;
+	public void setHddsn(String hddsn) {
+		this.hddsn = hddsn;
 	}
 
-	public String getQrcode_no() {
-		return qrcode_no;
+	public String getQrcode() {
+		return qrcode;
 	}
 
-	public void setQrcode_no(String qrcode_no) {
-		this.qrcode_no = qrcode_no;
+	public void setQrcode(String qrcode) {
+		this.qrcode = qrcode;
 	}
 
 	public String getWifi_ssid() {
@@ -209,12 +217,12 @@ public class CompanyClass {
 
 	@Override
 	public String toString() {
-		return "CompanyClass [_id=" + _id + ", first_phone=" + first_phone + ", sec_phone=" + sec_phone
+		return "CompanyClass [_id=" + _id + ", main_phone=" + main_phone + ", net_phone=" + net_phone
 				+ ", boot_on_weekend=" + boot_on_weekend + ", company_name=" + company_name + ", company_city="
 				+ company_city + ", company_address=" + company_address + ", company_aera=" + company_aera
-				+ ", first_contact=" + first_contact + ", sec_contact=" + sec_contact + ", boot_time=" + boot_time
+				+ ", main_contact=" + main_contact + ", net_contact=" + net_contact + ", boot_time=" + boot_time
 				+ ", shut_time=" + shut_time + ", company_type=" + company_type + ", lan_type=" + lan_type
-				+ ", harddisk_no=" + harddisk_no + ", qrcode_no=" + qrcode_no + ", wifi_ssid=" + wifi_ssid
+				+ ", hddsn=" + hddsn + ", qrcode=" + qrcode + ", wifi_ssid=" + wifi_ssid
 				+ ", wifi_password=" + wifi_password + ", note1=" + note1 + ", note2=" + note2 + ", factory=" + factory
 				+ ", chat_date=" + chat_date + ", install_date=" + install_date + "]";
 	}
@@ -235,17 +243,17 @@ public class CompanyClass {
 		result = prime * result + ((company_type == null) ? 0 : company_type.hashCode());
 		result = prime * result + ((create_date == null) ? 0 : create_date.hashCode());
 		result = prime * result + ((factory == null) ? 0 : factory.hashCode());
-		result = prime * result + ((first_contact == null) ? 0 : first_contact.hashCode());
-		result = prime * result + ((first_phone == null) ? 0 : first_phone.hashCode());
-		result = prime * result + ((harddisk_no == null) ? 0 : harddisk_no.hashCode());
+		result = prime * result + ((main_contact == null) ? 0 : main_contact.hashCode());
+		result = prime * result + ((main_phone == null) ? 0 : main_phone.hashCode());
+		result = prime * result + ((hddsn == null) ? 0 : hddsn.hashCode());
 		result = prime * result + ((install_date == null) ? 0 : install_date.hashCode());
 		result = prime * result + ((lan_type == null) ? 0 : lan_type.hashCode());
 		result = prime * result + ((modify_date == null) ? 0 : modify_date.hashCode());
 		result = prime * result + ((note1 == null) ? 0 : note1.hashCode());
 		result = prime * result + ((note2 == null) ? 0 : note2.hashCode());
-		result = prime * result + ((qrcode_no == null) ? 0 : qrcode_no.hashCode());
-		result = prime * result + ((sec_contact == null) ? 0 : sec_contact.hashCode());
-		result = prime * result + ((sec_phone == null) ? 0 : sec_phone.hashCode());
+		result = prime * result + ((qrcode == null) ? 0 : qrcode.hashCode());
+		result = prime * result + ((net_contact == null) ? 0 : net_contact.hashCode());
+		result = prime * result + ((net_phone == null) ? 0 : net_phone.hashCode());
 		result = prime * result + ((shut_time == null) ? 0 : shut_time.hashCode());
 		result = prime * result + ((wifi_password == null) ? 0 : wifi_password.hashCode());
 		result = prime * result + ((wifi_ssid == null) ? 0 : wifi_ssid.hashCode());
@@ -310,20 +318,20 @@ public class CompanyClass {
 				return false;
 		} else if (!factory.equals(other.factory))
 			return false;
-		if (first_contact == null) {
-			if (other.first_contact != null)
+		if (main_contact == null) {
+			if (other.main_contact != null)
 				return false;
-		} else if (!first_contact.equals(other.first_contact))
+		} else if (!main_contact.equals(other.main_contact))
 			return false;
-		if (first_phone == null) {
-			if (other.first_phone != null)
+		if (main_phone == null) {
+			if (other.main_phone != null)
 				return false;
-		} else if (!first_phone.equals(other.first_phone))
+		} else if (!main_phone.equals(other.main_phone))
 			return false;
-		if (harddisk_no == null) {
-			if (other.harddisk_no != null)
+		if (hddsn == null) {
+			if (other.hddsn != null)
 				return false;
-		} else if (!harddisk_no.equals(other.harddisk_no))
+		} else if (!hddsn.equals(other.hddsn))
 			return false;
 		if (install_date == null) {
 			if (other.install_date != null)
@@ -350,20 +358,20 @@ public class CompanyClass {
 				return false;
 		} else if (!note2.equals(other.note2))
 			return false;
-		if (qrcode_no == null) {
-			if (other.qrcode_no != null)
+		if (qrcode == null) {
+			if (other.qrcode != null)
 				return false;
-		} else if (!qrcode_no.equals(other.qrcode_no))
+		} else if (!qrcode.equals(other.qrcode))
 			return false;
-		if (sec_contact == null) {
-			if (other.sec_contact != null)
+		if (net_contact == null) {
+			if (other.net_contact != null)
 				return false;
-		} else if (!sec_contact.equals(other.sec_contact))
+		} else if (!net_contact.equals(other.net_contact))
 			return false;
-		if (sec_phone == null) {
-			if (other.sec_phone != null)
+		if (net_phone == null) {
+			if (other.net_phone != null)
 				return false;
-		} else if (!sec_phone.equals(other.sec_phone))
+		} else if (!net_phone.equals(other.net_phone))
 			return false;
 		if (shut_time == null) {
 			if (other.shut_time != null)
