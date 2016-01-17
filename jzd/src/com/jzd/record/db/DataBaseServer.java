@@ -39,7 +39,7 @@ public class DataBaseServer {
 			cv.put("company_type", entity.getCompany_type());
 			cv.put("lan_type", entity.getLan_type());
 			cv.put("boot_on_weekend", entity.getBoot_on_weekend());
-			cv.put("hddsn",entity.getHddsn());
+			cv.put("hddsn", entity.getHddsn());
 			cv.put("qrcode", entity.getQrcode());
 			cv.put("wifi_ssid", entity.getWifi_ssid());
 			cv.put("wifi_password", entity.getWifi_password());
@@ -90,7 +90,7 @@ public class DataBaseServer {
 			cv.put("boot_on_weekend", entity.getBoot_on_weekend());
 			cv.put("wifi_ssid", entity.getWifi_ssid());
 			cv.put("wifi_password", entity.getWifi_password());
-			cv.put("hddsn",entity.getHddsn());
+			cv.put("hddsn", entity.getHddsn());
 			cv.put("qrcode", entity.getQrcode());
 			cv.put("note1", entity.getNote1());
 			cv.put("note2", entity.getNote2());
@@ -117,6 +117,24 @@ public class DataBaseServer {
 		}
 		return -1;
 
+	}
+
+	public boolean deleteById(String id) {
+		try {
+			SQLiteDatabase localSQLiteDatabase = this.dbhelper
+					.getWritableDatabase();
+			int rtn_code = localSQLiteDatabase.delete("t_install", "_id = ?",
+					new String[] { id });
+			if (rtn_code == 1) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	// 根据关键字返回一条或多条记录

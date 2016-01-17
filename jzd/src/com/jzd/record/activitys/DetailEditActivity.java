@@ -10,10 +10,10 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
@@ -26,6 +26,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
 import com.jzd.record.R;
 import com.jzd.record.db.CompanyClass;
 import com.jzd.record.db.DataBaseServer;
@@ -38,7 +42,7 @@ import com.tencent.tauth.Tencent;
 
 public class DetailEditActivity extends Activity implements OnClickListener {
 	private DataBaseServer db;
-	private Button btn_modify, btn_cpinfo;
+	private Button btn_modify, btn_cpinfo, btn_delete;
 	private TextView tv_boot_on_weekend;
 	private EditText et_name, et_address, et_devicelocation, et_boot_time,
 			et_shut_time, et_main_contact, et_net_contact, et_hddsn, et_qrcode,
@@ -97,6 +101,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		sw_boot_on_weekend = (Switch) findViewById(R.id.sw_boot_on_weekend);
 		btn_modify = (Button) findViewById(R.id.btn_modify);
 		btn_cpinfo = (Button) findViewById(R.id.btn_cpinfo);
+		btn_delete = (Button) findViewById(R.id.btn_delete);
 
 		// Log.e("isnew?", isnew + "");
 		CityAreaUtils.loadCityAreaItems(spi_company_city, this, null);
@@ -122,6 +127,8 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		btn_modify.setOnClickListener(this);
 		btn_cpinfo.setOnClickListener(this);
 		et_qrcode.setOnClickListener(this);
+		btn_delete.setOnClickListener(this);
+		//设置周末是否开机
 		sw_boot_on_weekend
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 					@Override
@@ -139,6 +146,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 
 				});
 
+		//联动加载地区
 		spi_company_city
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -159,6 +167,17 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 					}
 
 				});
+
+		// 改成大写
+		et_hddsn.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				// TODO Auto-generated method stub
+				et_hddsn.setText(et_hddsn.getText().toString().toUpperCase());
+			}
+
+		});
 	}
 
 	@Override
@@ -167,17 +186,20 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_modify:
 			btnControl(true);
+			cpinfo();
 			btn_cpinfo.setText("保存复制");
 			break;
 		case R.id.btn_cpinfo:
 			save();
 			btnControl(false);
 			break;
+		case R.id.btn_delete:
+			delete();
+			break;
 		case R.id.et_boot_time:
 			et_setTime(et_boot_time);
 			break;
 		case R.id.et_shut_time:
-
 			et_setTime(et_shut_time);
 			break;
 		case R.id.et_qrcode:
@@ -187,6 +209,19 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			startActivityForResult(intent, 0);
 		default:
 			break;
+		}
+	}
+
+	private void delete() {
+		db = new DataBaseServer(this);
+		boolean success = false;
+		success = db.deleteById(real_id + "");
+
+		if (success) {
+			Toast.makeText(this, "删除成功", Toast.LENGTH_SHORT).show();
+			this.finish();
+		} else {
+			Toast.makeText(this, "删除失败", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -415,8 +450,33 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	private void cpinfo() {
+	public LocationClient mLocationClient = null;
+	public BDLocationListener myListener = new MyLocationListener();
 
+	private void cpinfo() {
+		mLocationClient = new LocationClient(getApplicationContext()); // 声明LocationClient类
+		mLocationClient.registerLocationListener(myListener); // 注册监听函数
+
+		initLocation();
+
+		mLocationClient.start();
+	}
+
+	private void initLocation() {
+		LocationClientOption option = new LocationClientOption();
+		option.setLocationMode(LocationMode.Hight_Accuracy);// 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+		option.setCoorType("bd09ll");// 可选，默认gcj02，设置返回的定位结果坐标系
+		int span = 1000;
+		option.setScanSpan(span);// 可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+		option.setIsNeedAddress(true);// 可选，设置是否需要地址信息，默认不需要
+		option.setOpenGps(true);// 可选，默认false,设置是否使用gps
+		option.setLocationNotify(true);// 可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
+		option.setIsNeedLocationDescribe(true);// 可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
+		option.setIsNeedLocationPoiList(true);// 可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
+		option.setIgnoreKillProcess(false);// 可选，默认false，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认杀死
+		option.SetIgnoreCacheException(false);// 可选，默认false，设置是否收集CRASH信息，默认收集
+		option.setEnableSimulateGps(false);// 可选，默认false，设置是否需要过滤gps仿真结果，默认需要
+		mLocationClient.setLocOption(option);
 	}
 
 	private void et_setTime(final EditText et) {
