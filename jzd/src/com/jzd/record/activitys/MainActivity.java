@@ -23,8 +23,9 @@ import com.jzd.record.db.DbCityHelper;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	private Button btn_install, btn_installed, btn_repair_search, btn_install_record, btn_repair_record,
-			btn_import_installed, btn_export_installed, btn_set_default_city, btn_login;
+	private Button btn_install, btn_installed, btn_repair_search,
+			btn_install_record, btn_repair_record, btn_import_installed,
+			btn_export_installed, btn_set_default_city, btn_login;
 	private DataBaseServer db;
 	private DbCityHelper dbmanager;
 
@@ -118,6 +119,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btn_set_default_city:
 			intent.setClass(this, SetDefaultCityActivity.class);
 			break;
+		case R.id.btn_export_installed:
+			intent.setClass(this, ExportSearchActivity.class);
+			break;
+
 		case R.id.btn_login:
 			intent.setClass(this, LoginActivity.class);
 			break;

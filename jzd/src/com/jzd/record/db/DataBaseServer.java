@@ -125,7 +125,10 @@ public class DataBaseServer {
 					.getWritableDatabase();
 			int rtn_code = localSQLiteDatabase.delete("t_install", "_id = ?",
 					new String[] { id });
+
+			localSQLiteDatabase.close();
 			if (rtn_code == 1) {
+
 				return true;
 			} else {
 				return false;
@@ -135,6 +138,50 @@ public class DataBaseServer {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	/**
+	 * 查询所有数据
+	 * 
+	 * */
+	public List<CompanyClass> queryAll(String cityName) {
+		SQLiteDatabase db = this.dbhelper.getReadableDatabase();
+		List<CompanyClass> list = new ArrayList<CompanyClass>();
+		Cursor cursor = db.query("t_install", null, " company_city = ?",
+				new String[] { cityName }, null, null, null);
+
+		while (cursor.moveToNext()) {
+			CompanyClass company = new CompanyClass();
+			company.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
+			company.setHddsn(cursor.getString(cursor.getColumnIndex("hddsn")));
+			company.setQrcode(cursor.getString(cursor.getColumnIndex("qrcode")));
+			company.setCompany_name(cursor.getString(cursor
+					.getColumnIndex("company_name")));
+			company.setCompany_address(cursor.getString(cursor
+					.getColumnIndex("company_city"))
+					+ cursor.getString(cursor.getColumnIndex("company_area"))
+					+ cursor.getString(cursor.getColumnIndex("company_address")));
+			company.setmain_contact(cursor.getString(cursor
+					.getColumnIndex("main_contact")));
+			company.setmain_phone(cursor.getString(cursor
+					.getColumnIndex("main_phone")));
+			company.setBoot_time(cursor.getString(cursor
+					.getColumnIndex("boot_time")));
+			company.setShut_time(cursor.getString(cursor
+					.getColumnIndex("shut_time")));
+			company.setFactory(cursor.getString(cursor
+					.getColumnIndex("factory")));
+			company.setDevice_location(cursor.getString(cursor
+					.getColumnIndex("device_location")));
+			company.setCompany_aera(cursor.getString(cursor
+					.getColumnIndex("company_area")));
+			company.setCompany_type(cursor.getString(cursor
+					.getColumnIndex("company_type")));
+
+			list.add(company);
+		}
+		db.close();
+		return list;
 	}
 
 	// 根据关键字返回一条或多条记录
@@ -255,6 +302,7 @@ public class DataBaseServer {
 					.getColumnIndex("wifi_ssid")));
 		}
 
+		localSQLiteDatabase.close();
 		return company;
 	}
 

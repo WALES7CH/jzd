@@ -58,7 +58,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.jzd.record.activitys.MainActivity"
+            android:name=".activitys.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,24 +67,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jzd.record.activitys.InstallSearchActivity"
+            android:name=".activitys.InstallSearchActivity"
             android:label="@string/install_search" />
         <activity
-            android:name="com.jzd.record.activitys.InstalledSearchActivity"
+            android:name=".activitys.InstalledSearchActivity"
             android:label="@string/installed_search" />
         <activity
-            android:name="com.jzd.record.activitys.RepairSearchActivity"
+            android:name=".activitys.RepairSearchActivity"
             android:label="@string/repair_search" />
         <activity
-            android:name="com.jzd.record.activitys.DetailEditActivity"
+            android:name=".activitys.DetailEditActivity"
             android:label="@string/title_activity_detail_edit" >
         </activity>
         <activity
-            android:name="com.jzd.record.activitys.SetDefaultCityActivity"
+            android:name=".activitys.SetDefaultCityActivity"
             android:label="@string/title_activity_set_default_city" >
         </activity>
         <activity
-            android:name="com.jzd.record.activitys.LoginActivity"
+            android:name=".activitys.LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
@@ -119,6 +119,11 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="xPohhSnkmdLKgeHDCGDuj6wl" />
+
+        <activity
+            android:name="com.jzd.record.activitys.ExportSearchActivity"
+            android:label="@string/title_activity_export_search" >
+        </activity>
     </application>
 
 </manifest>
