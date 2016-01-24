@@ -181,12 +181,13 @@ public final class R {
         public static final int activity_installed_search=0x7f030004;
         public static final int activity_login=0x7f030005;
         public static final int activity_main=0x7f030006;
-        public static final int activity_repair_search=0x7f030007;
-        public static final int activity_result=0x7f030008;
-        public static final int activity_set_default_city=0x7f030009;
-        public static final int condtion=0x7f03000a;
-        public static final int index=0x7f03000b;
-        public static final int list_item=0x7f03000c;
+        public static final int activity_repair_edit=0x7f030007;
+        public static final int activity_repair_search=0x7f030008;
+        public static final int activity_result=0x7f030009;
+        public static final int activity_set_default_city=0x7f03000a;
+        public static final int condtion=0x7f03000b;
+        public static final int index=0x7f03000c;
+        public static final int list_item=0x7f03000d;
     }
     public static final class menu {
         public static final int detail_edit=0x7f0a0000;
@@ -204,10 +205,10 @@ public final class R {
         public static final int region=0x7f040001;
     }
     public static final class string {
-        public static final int action_forgot_password=0x7f080039;
+        public static final int action_forgot_password=0x7f08003a;
         public static final int action_settings=0x7f080001;
-        public static final int action_sign_in_register=0x7f080037;
-        public static final int action_sign_in_short=0x7f080038;
+        public static final int action_sign_in_register=0x7f080038;
+        public static final int action_sign_in_short=0x7f080039;
         public static final int address=0x7f080003;
         public static final int app_name=0x7f080000;
         public static final int area=0x7f080022;
@@ -215,15 +216,15 @@ public final class R {
         public static final int boot_on_weekend=0x7f080024;
         public static final int boot_time=0x7f080007;
         public static final int clearinfo=0x7f080017;
-        public static final int code=0x7f08003f;
+        public static final int code=0x7f080040;
         public static final int company_type=0x7f080023;
         public static final int contact=0x7f08000b;
         public static final int detail_address=0x7f080004;
         public static final int end_date=0x7f080033;
-        public static final int error_field_required=0x7f08003e;
-        public static final int error_incorrect_password=0x7f08003d;
-        public static final int error_invalid_email=0x7f08003b;
-        public static final int error_invalid_password=0x7f08003c;
+        public static final int error_field_required=0x7f08003f;
+        public static final int error_incorrect_password=0x7f08003e;
+        public static final int error_invalid_email=0x7f08003c;
+        public static final int error_invalid_password=0x7f08003d;
         public static final int export_installed=0x7f08002b;
         public static final int factory=0x7f08000a;
         public static final int gen=0x7f080016;
@@ -238,14 +239,14 @@ public final class R {
         public static final int lantype_lan=0x7f080013;
         public static final int lantype_wifi=0x7f080014;
         public static final int login=0x7f08002f;
-        public static final int login_progress_signing_in=0x7f08003a;
+        public static final int login_progress_signing_in=0x7f08003b;
         public static final int name=0x7f080002;
         public static final int note=0x7f08000f;
         public static final int phone=0x7f08000c;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f080035;
-        public static final int prompt_password=0x7f080036;
+        public static final int prompt_email=0x7f080036;
+        public static final int prompt_password=0x7f080037;
         public static final int qrcode=0x7f08000d;
         public static final int repair_record=0x7f080029;
         public static final int repair_search=0x7f080028;
@@ -264,7 +265,8 @@ public final class R {
         public static final int title_activity_detail_edit=0x7f080021;
         public static final int title_activity_detail_view=0x7f08001f;
         public static final int title_activity_export_search=0x7f080031;
-        public static final int title_activity_login=0x7f080034;
+        public static final int title_activity_login=0x7f080035;
+        public static final int title_activity_repair_edit=0x7f080034;
         public static final int title_activity_set_default_city=0x7f08002d;
         public static final int type=0x7f080005;
         public static final int type_dz=0x7f080010;

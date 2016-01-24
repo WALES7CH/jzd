@@ -9,11 +9,13 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
@@ -35,6 +37,7 @@ import com.jzd.record.db.CompanyClass;
 import com.jzd.record.db.DataBaseServer;
 import com.jzd.record.utils.CityAreaUtils;
 import com.jzd.record.utils.DefaultSetting;
+import com.jzd.record.utils.RegexValidateUtil;
 import com.jzd.record.utils.SpinnerUtils;
 import com.tencent.connect.share.QQShare;
 import com.tencent.share.BaseUIListener;
@@ -43,7 +46,7 @@ import com.tencent.tauth.Tencent;
 public class DetailEditActivity extends Activity implements OnClickListener {
 	private DataBaseServer db;
 	private Button btn_modify, btn_cpinfo, btn_delete;
-	private TextView tv_boot_on_weekend;
+	private TextView tv_boot_on_weekend, tt_contact;
 	private EditText et_name, et_address, et_devicelocation, et_boot_time,
 			et_shut_time, et_main_contact, et_net_contact, et_hddsn, et_qrcode,
 			et_net_phone, et_main_phone;
@@ -54,6 +57,10 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 	private int real_id = 0;
 	private boolean installed, isnew;
 	public static Tencent mTencent;
+	/*
+	 * 编辑状态 1 查看状态 0
+	 */
+	private int EDIT_STATUS = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		spi_factory = (Spinner) findViewById(R.id.spi_factory);
 
 		tv_boot_on_weekend = (TextView) findViewById(R.id.tv_boot_on_weekend);
+		tt_contact = (TextView) findViewById(R.id.tt_contact);
 
 		et_name = (EditText) findViewById(R.id.et_name);
 		et_address = (EditText) findViewById(R.id.et_address);
@@ -128,7 +136,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		btn_cpinfo.setOnClickListener(this);
 		et_qrcode.setOnClickListener(this);
 		btn_delete.setOnClickListener(this);
-		//设置周末是否开机
+		// 设置周末是否开机
 		sw_boot_on_weekend
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 					@Override
@@ -146,7 +154,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 
 				});
 
-		//联动加载地区
+		// 联动加载地区
 		spi_company_city
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -178,6 +186,30 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			}
 
 		});
+
+		// 长按拨打电话
+		tt_contact.setOnLongClickListener(new OnLongClickListener() {
+
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+
+				String number = et_main_phone.getText().toString()
+						.replace(" ", "");
+
+				Toast.makeText(getApplicationContext(),
+						"" + RegexValidateUtil.checkMobileNumber(number),
+						Toast.LENGTH_SHORT).show();
+
+				// 用intent启动拨打电话
+				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"
+						+ number));
+				startActivity(intent);
+
+				return false;
+			}
+
+		});
 	}
 
 	@Override
@@ -186,12 +218,15 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_modify:
 			btnControl(true);
+			EDIT_STATUS = 1;
 			cpinfo();
 			btn_cpinfo.setText("保存复制");
 			break;
 		case R.id.btn_cpinfo:
 			save();
 			btnControl(false);
+			btn_cpinfo.setText("复制信息");
+			EDIT_STATUS = 0;
 			break;
 		case R.id.btn_delete:
 			delete();
@@ -361,7 +396,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 				+ et_main_phone.getText().toString() + "\n");
 		sb.append("终端编号：" + spi_hddsn.getSelectedItem().toString()
 				+ et_hddsn.getText().toString() + "\n");
-		sb.append("二维码：" + et_qrcode.getText().toString() + "\n");
+		sb.append("二维码：" + et_qrcode.getText().toString());
 		sendMsg = sb.toString();
 		Log.e("sendMsg TAG", sendMsg);
 		return sendMsg;
