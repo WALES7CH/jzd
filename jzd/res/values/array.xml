@@ -3,12 +3,13 @@
 
     <string-array name="company_type">
         <item>政府机关</item>
-        <item>酒店</item>
-        <item>银行</item>
+        <item>医院</item>
         <item>高校</item>
-        <item>企业</item>
         <item>客运</item>
         <item>国企</item>
+        <item>酒店</item>
+        <item>银行</item>
+        <item>企业</item>
         <item>机场</item>
     </string-array>
     <string-array name="lan_type">

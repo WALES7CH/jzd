@@ -1,12 +1,10 @@
 package com.jzd.record.activitys;
 
-import com.jzd.record.R;
-import com.jzd.record.R.layout;
-import com.jzd.record.R.menu;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+
+import com.jzd.record.R;
 
 public class RepairSearchActivity extends Activity {
 

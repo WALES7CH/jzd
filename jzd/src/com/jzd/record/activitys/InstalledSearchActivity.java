@@ -2,7 +2,6 @@ package com.jzd.record.activitys;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +20,8 @@ import com.jzd.record.R;
 import com.jzd.record.db.DataBaseServer;
 import com.jzd.record.utils.CityAreaUtils;
 
-public class InstalledSearchActivity extends Activity implements OnClickListener {
+public class InstalledSearchActivity extends Activity implements
+		OnClickListener {
 
 	private Button btn_clean, btn_search;
 	private ListView listview;
@@ -35,7 +35,6 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_installed_search);
-
 		init();
 	}
 
@@ -64,11 +63,13 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> adapterView, View view, int arg2, long arg3) {
+			public void onItemClick(AdapterView<?> adapterView, View view,
+					int arg2, long arg3) {
 				// TODO Auto-generated method stub
 				// int selectedPosition = adapterView.getSelectedItemPosition();
 
-				Intent intent = new Intent(InstalledSearchActivity.this, DetailEditActivity.class);
+				Intent intent = new Intent(InstalledSearchActivity.this,
+						DetailEditActivity.class);
 
 				// TextView tv_real_id = (TextView)
 				// findViewById(R.id.tv_real_id);
@@ -126,9 +127,11 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 		}
 		SimpleAdapter adapter = null;
 		if (this.installed) {
-			adapter = new SimpleAdapter(this, list, R.layout.list_item, new String[] { "index", "real_id",
-					"company_name", "hddsn","company_address" }, new int[] { R.id.tv_index, R.id.tv_real_id, R.id.tv_company_name,
-					R.id.tv_harddisk_no,R.id.tv_address });
+			adapter = new SimpleAdapter(this, list, R.layout.list_item,
+					new String[] { "index", "real_id", "company_name", "hddsn",
+							"company_address" }, new int[] { R.id.tv_index,
+							R.id.tv_real_id, R.id.tv_company_name,
+							R.id.tv_harddisk_no, R.id.tv_address });
 
 			listview.setAdapter(adapter);
 
@@ -136,9 +139,11 @@ public class InstalledSearchActivity extends Activity implements OnClickListener
 			// tv_address.setVisibility(View.GONE);
 
 		} else {
-			adapter = new SimpleAdapter(this, list, R.layout.list_item, new String[] { "index", "real_id",
-					"company_name", "company_address" }, new int[] { R.id.tv_index, R.id.tv_real_id,
-					R.id.tv_company_name, R.id.tv_address });
+			adapter = new SimpleAdapter(this, list, R.layout.list_item,
+					new String[] { "index", "real_id", "company_name",
+							"company_address" }, new int[] { R.id.tv_index,
+							R.id.tv_real_id, R.id.tv_company_name,
+							R.id.tv_address });
 
 			listview.setAdapter(adapter);
 

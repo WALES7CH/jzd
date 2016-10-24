@@ -4,58 +4,92 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_install_record"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_btn_install_record" />
+    <!-- 这就是我们的“数据管理按钮” -->
 
-    <Button
-        android:id="@+id/btn_install_search"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/ll_install"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/install_search" />
+        android:orientation="horizontal" />
 
-    <Button
-        android:id="@+id/btn_installed_search"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/ll_repair"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/installed_search" />
+        android:orientation="horizontal" />
 
-    <Button
-        android:id="@+id/btn_repair_search"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/ll_export"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/repair_search" />
+        android:orientation="horizontal" />
 
-    <Button
-        android:id="@+id/btn_repair_record"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/ll_setting"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/repair_record" />
+        android:orientation="horizontal" />
 
-    <Button
-        android:id="@+id/btn_import_installed"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/ll_hide"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/import_installed" />
+        android:orientation="horizontal"
+        android:visibility="gone" >
 
-    <Button
-        android:id="@+id/btn_export_installed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/export_installed" />
+        <Button
+            android:id="@+id/btn_install_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_install_record" />
 
-    <Button
-        android:id="@+id/btn_set_default_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/set_default_city" />
+        <Button
+            android:id="@+id/btn_install_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/install_search" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login" />
+        <Button
+            android:id="@+id/btn_installed_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/installed_search" />
+
+        <Button
+            android:id="@+id/btn_repair_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/repair_search" />
+
+        <Button
+            android:id="@+id/btn_repair_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/repair_record" />
+
+        <Button
+            android:id="@+id/btn_import_installed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/import_installed" />
+
+        <Button
+            android:id="@+id/btn_export_installed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/export_installed" />
+
+        <Button
+            android:id="@+id/btn_set_default_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/set_default_city" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login" />
+    </LinearLayout>
 
 </LinearLayout>

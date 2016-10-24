@@ -15,6 +15,7 @@ public class SpinnerUtils {
 		Log.e("Spinner", value);
 		for (int i = 0; i < spinner.getAdapter().getCount(); i++) {
 			if (spinner.getItemAtPosition(i).toString().equals(value)) {
+				Log.e("setSelection:" , i + " == " + spinner.getItemAtPosition(i).toString());
 				spinner.setSelection(i);
 				break;
 			}

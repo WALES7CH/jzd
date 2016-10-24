@@ -3,16 +3,8 @@ package com.jzd.record.activitys;
 import java.util.List;
 import java.util.Map;
 
-import com.jzd.record.R;
-import com.jzd.record.R.layout;
-import com.jzd.record.db.DataBaseServer;
-import com.jzd.record.utils.CityAreaUtils;
-import com.jzd.record.utils.JxlUtil;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,6 +13,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.jzd.record.R;
+import com.jzd.record.db.DataBaseServer;
+import com.jzd.record.utils.CityAreaUtils;
+import com.jzd.record.utils.JxlUtil;
 
 public class ExportSearchActivity extends Activity implements OnClickListener {
 	private Button btn_clean, btn_search, btn_export_excel;

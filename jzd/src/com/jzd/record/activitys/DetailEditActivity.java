@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,6 +56,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			spi_hddsn, spi_lan_type, spi_factory;
 
 	private int real_id = 0;
+//	private boolean isSet = false;
 	private boolean installed, isnew;
 	public static Tencent mTencent;
 	/*
@@ -125,7 +127,15 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		// 读取并 设置控件值
 		loadRecord();
 
-		setListeners();
+		
+		
+		//延迟执行 2s 该页面 设置监听事件 的方法
+		new Handler().postDelayed(new Runnable(){    
+		    public void run() {  
+		    	setListeners();
+		    }    
+		 }, 2000);  
+		
 
 	}
 
@@ -154,27 +164,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 
 				});
 
-		// 联动加载地区
-		spi_company_city
-				.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-					@Override
-					public void onItemSelected(AdapterView<?> arg0, View arg1,
-							int arg2, long arg3) {
-						// TODO Auto-generated method stub
-
-						CityAreaUtils.loadCityAreaItems(spi_company_area,
-								DetailEditActivity.this, spi_company_city
-										.getSelectedItem().toString());
-					}
-
-					@Override
-					public void onNothingSelected(AdapterView<?> arg0) {
-						// TODO Auto-generated method stub
-
-					}
-
-				});
+		
 
 		// 改成大写
 		et_hddsn.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -202,7 +192,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 						Toast.LENGTH_SHORT).show();
 
 				// 用intent启动拨打电话
-				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"
+				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:118333"
 						+ number));
 				startActivity(intent);
 
@@ -210,6 +200,28 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			}
 
 		});
+		// 联动加载地区
+		spi_company_city
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						// TODO Auto-generated method stub
+						
+//								Log.e("isSet" , isSet + "");
+//								if(!isSet) return;
+
+						CityAreaUtils.loadCityAreaItems(spi_company_area,
+								DetailEditActivity.this, spi_company_city
+										.getSelectedItem().toString());
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+					}
+				});
 	}
 
 	@Override
@@ -218,13 +230,17 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_modify:
 			btnControl(true);
+
 			EDIT_STATUS = 1;
-			cpinfo();
+			
+			btn_modify.setText("保存");
 			btn_cpinfo.setText("保存复制");
 			break;
 		case R.id.btn_cpinfo:
-			save();
 			btnControl(false);
+			save();
+			cpinfo();
+			btn_modify.setText("修改");
 			btn_cpinfo.setText("复制信息");
 			EDIT_STATUS = 0;
 			break;
@@ -245,6 +261,10 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+
+	private void onSave() {
+
 	}
 
 	private void delete() {
@@ -299,8 +319,8 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		company.setCompany_address(et_address.getText().toString());
 		company.setDevice_location(et_devicelocation.getText().toString());
 		company.setCompany_type(spi_company_type.getSelectedItem().toString());
-		company.setBoot_time(et_boot_time.getText().toString());
-		company.setShut_time(et_shut_time.getText().toString());
+		company.setBoot_time(et_boot_time.getText().toString().replace("：", ":"));
+		company.setShut_time(et_shut_time.getText().toString().replace("：", ":"));
 		company.setLan_type(spi_lan_type.getSelectedItem().toString());
 		company.setHddsn(spi_hddsn.getSelectedItem().toString()
 				+ et_hddsn.getText().toString().toUpperCase());
@@ -323,7 +343,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			msg = "保存成功! + " + rtn_id;
 		} else {
 			rtn_id = db.update(company);
-			msg = "保存成功!" + +rtn_id;
+			msg = "更新成功!" + +rtn_id;
 		}
 
 		if (rtn_id > 0) {
@@ -450,10 +470,7 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 			SpinnerUtils.setSelectedItem(spi_company_city,
 					company.getCompany_city());
 		}
-		if (company.getCompany_aera() != null) {
-			SpinnerUtils.setSelectedItem(spi_company_area,
-					company.getCompany_aera());
-		}
+		
 		if (company.getHddsn() != null && company.getHddsn().length() >= 8) {
 			SpinnerUtils.setSelectedItem(spi_hddsn, company.getHddsn()
 					.substring(0, 4));
@@ -469,6 +486,12 @@ public class DetailEditActivity extends Activity implements OnClickListener {
 		}
 		if (company.getFactory() != null) {
 			SpinnerUtils.setSelectedItem(spi_factory, company.getFactory());
+		}
+		
+		if (company.getCompany_aera() != null) {
+//			String area_str = company.getCompany_aera();
+			SpinnerUtils.setSelectedItem(spi_company_area,
+					company.getCompany_aera());
 		}
 
 	}
