@@ -206,7 +206,7 @@ public class DataBaseServer {
 		} else {
 			sql += " and hddsn is null ";
 		}
-		sql += "  order by company_name asc ";
+		sql += "  order by _id desc,creat_date desc ";
 
 		Log.e("TAG", sql);
 

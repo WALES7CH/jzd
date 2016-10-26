@@ -33,13 +33,31 @@
         android:layout_below="@id/spi_default_city"
         android:layout_marginBottom="15dp"
         android:text="设置" />
+    
+    <EditText
+        android:id="@+id/et_new_area"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/btn_set_default_city"
+        android:layout_marginBottom="15dp"
+        />
+    <Button 
+        android:id="@+id/btn_add_area"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_new_area"
+        android:layout_marginBottom="15dp"
+        android:text="添加新区县"
+        android:hint="new_area"
+        />
 
     <TextView
         android:id="@+id/tv_old_defalut_city"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/btn_set_default_city"
+        android:layout_below="@id/btn_add_area"
         android:layout_marginBottom="15dp"
         android:text="@string/app_name" />
 

@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 public class DbCityService {
@@ -18,13 +19,11 @@ public class DbCityService {
 	// 找城市
 	public List<String> getCitylist() {
 		List<String> cityLst = new ArrayList<String>();
-		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper
-				.getReadableDatabase();
+		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getReadableDatabase();
 
 		String sql = "SELECT c.* FROM city c ,province p WHERE c.pid=p.id and p.name = ? order by isdefault desc";
 
-		Cursor cursor = localSQLiteDatabase.rawQuery(sql,
-				new String[] { "四川省" });
+		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "四川省" });
 		// Log.e("TAG", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			cityLst.add(cursor.getString(cursor.getColumnIndex("name")));
@@ -37,13 +36,11 @@ public class DbCityService {
 	public List<String> getArealist(String city) {
 		List<String> areaLst = new ArrayList<String>();
 
-		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper
-				.getReadableDatabase();
+		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getReadableDatabase();
 
 		String sql = "SELECT a.* FROM city c ,area a WHERE a.pid=c.id and c.name = ?";
 
-		Cursor cursor = localSQLiteDatabase
-				.rawQuery(sql, new String[] { city });
+		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { city });
 		// Log.e("TAG", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			areaLst.add(cursor.getString(cursor.getColumnIndex("name")));
@@ -54,13 +51,11 @@ public class DbCityService {
 
 	public String getDefaultCity() {
 		String defaultCity = null;
-		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper
-				.getWritableDatabase();
+		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getWritableDatabase();
 
 		String sql = "SELECT c.* FROM city c ,province p WHERE c.pid=p.id and p.name = ? and c.isdefault = 1";
 
-		Cursor cursor = localSQLiteDatabase.rawQuery(sql,
-				new String[] { "四川省" });
+		Cursor cursor = localSQLiteDatabase.rawQuery(sql, new String[] { "四川省" });
 		// Log.e("TAG", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			defaultCity = cursor.getString(cursor.getColumnIndex("name"));
@@ -71,16 +66,13 @@ public class DbCityService {
 
 	public boolean updateDefaultCity(String newCity, String oldCity) {
 		try {
-			SQLiteDatabase localSQLiteDatabase = this.dbcityhelper
-					.getWritableDatabase();
+			SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getWritableDatabase();
 
 			String updateSql_new = "update city set isdefault = 1 where name = ? ";
 			String updatesql_old = "update city set isdefault = 0 where name = ? ";
 
-			localSQLiteDatabase
-					.execSQL(updateSql_new, new String[] { newCity });
-			localSQLiteDatabase
-					.execSQL(updatesql_old, new String[] { oldCity });
+			localSQLiteDatabase.execSQL(updateSql_new, new String[] { newCity });
+			localSQLiteDatabase.execSQL(updatesql_old, new String[] { oldCity });
 			localSQLiteDatabase.close();
 			return true;
 		} catch (Exception e) {
@@ -96,13 +88,11 @@ public class DbCityService {
 	 */
 	public boolean InsertHddsn(String hddsn, String factory) {
 		try {
-			SQLiteDatabase localSQLiteDatabase = this.dbcityhelper
-					.getWritableDatabase();
+			SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getWritableDatabase();
 
 			String insertSql = "insert into t_hddsn(hddsn,factory) values(?,?)";
 
-			localSQLiteDatabase.execSQL(insertSql,
-					new String[] { hddsn.toUpperCase(), factory });
+			localSQLiteDatabase.execSQL(insertSql, new String[] { hddsn.toUpperCase(), factory });
 			localSQLiteDatabase.close();
 			return true;
 		} catch (Exception e) {
@@ -110,12 +100,32 @@ public class DbCityService {
 		}
 	}
 
+	public boolean InsertArea(String parent, String new_area) {
+		try {
+			SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getWritableDatabase();
+			int pid = 0;
+			String pid_sql = "SELECT id from city where name = '" + parent + "'";
+			Cursor csr = localSQLiteDatabase.rawQuery(pid_sql, null);
+			while (csr.moveToNext()) {
+				pid = csr.getInt(csr.getColumnIndex("id"));
+			}
+			
+			String insertSql = "INSERT INTO area(pid,name) values(?,?)";
+			localSQLiteDatabase.execSQL(insertSql, new String[] { pid+"",new_area});
+			localSQLiteDatabase.close();
+
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
+
 	// 列出所有的硬盘号前缀
 	public List<String> getHddsnlist() {
 		List<String> hddsnLst = new ArrayList<String>();
 
-		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper
-				.getReadableDatabase();
+		SQLiteDatabase localSQLiteDatabase = this.dbcityhelper.getReadableDatabase();
 
 		String sql = "SELECT hddsn from t_hddsn";
 

@@ -19,9 +19,9 @@ import com.jzd.record.utils.SpinnerUtils;
 public class SetDefaultCityActivity extends Activity {
 
 	private TextView tv_old_defalut_city;
-	private EditText et_addhddsn,et_hhd_factory;
+	private EditText et_addhddsn,et_hhd_factory,et_new_area;
 	private Spinner spi_default_city;
-	private Button btn_set_default_city,btn_addhddsn;
+	private Button btn_set_default_city,btn_addhddsn,btn_add_area;
 	private DbCityService dbcityservice;
 
 	@Override
@@ -44,10 +44,12 @@ public class SetDefaultCityActivity extends Activity {
 		tv_old_defalut_city = (TextView) findViewById(R.id.tv_old_defalut_city);
 		spi_default_city = (Spinner) findViewById(R.id.spi_default_city);
 		btn_set_default_city = (Button) findViewById(R.id.btn_set_default_city);
+		btn_add_area = (Button)findViewById(R.id.btn_add_area);
 		
 		btn_addhddsn = (Button) findViewById(R.id.btn_addhddsn);
 		et_addhddsn = (EditText) findViewById(R.id.et_addhddsn);
 		et_hhd_factory = (EditText) findViewById(R.id.et_hdd_factory);
+		et_new_area = (EditText)findViewById(R.id.et_new_area);
 
 		CityAreaUtils.loadCityAreaItems(spi_default_city, this, null);
 
@@ -66,6 +68,23 @@ public class SetDefaultCityActivity extends Activity {
 				}
 			}
 
+		});
+		
+		btn_add_area.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				String parent = spi_default_city.getSelectedItem().toString();
+				String new_area = et_new_area.getText().toString();
+				boolean success = dbcityservice.InsertArea(parent, new_area);
+				if (success) {
+					Toast.makeText(SetDefaultCityActivity.this, "添加成功!", Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(SetDefaultCityActivity.this, "添加失败!", Toast.LENGTH_SHORT).show();
+				}
+			}
+			
 		});
 		
 		

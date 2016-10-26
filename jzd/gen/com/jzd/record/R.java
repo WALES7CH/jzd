@@ -72,24 +72,25 @@ public final class R {
         public static final int wp=0x7f020026;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f07008f;
-        public static final int action_settings=0x7f07008e;
+        public static final int action_forgot_password=0x7f070091;
+        public static final int action_settings=0x7f070090;
         public static final int add=0x7f070049;
-        public static final int btn_addhddsn=0x7f070071;
-        public static final int btn_clean=0x7f070078;
+        public static final int btn_add_area=0x7f070070;
+        public static final int btn_addhddsn=0x7f070073;
+        public static final int btn_clean=0x7f07007a;
         public static final int btn_cpinfo=0x7f070030;
         public static final int btn_delete=0x7f070031;
         public static final int btn_export_excel=0x7f070037;
-        public static final int btn_export_installed=0x7f070083;
-        public static final int btn_import_installed=0x7f070082;
+        public static final int btn_export_installed=0x7f070085;
+        public static final int btn_import_installed=0x7f070084;
         public static final int btn_install_record=0x7f070032;
-        public static final int btn_install_search=0x7f07007e;
-        public static final int btn_installed_search=0x7f07007f;
-        public static final int btn_login=0x7f070084;
+        public static final int btn_install_search=0x7f070080;
+        public static final int btn_installed_search=0x7f070081;
+        public static final int btn_login=0x7f070086;
         public static final int btn_modify=0x7f07002f;
-        public static final int btn_repair_record=0x7f070081;
-        public static final int btn_repair_search=0x7f070080;
-        public static final int btn_search=0x7f070075;
+        public static final int btn_repair_record=0x7f070083;
+        public static final int btn_repair_search=0x7f070082;
+        public static final int btn_search=0x7f070077;
         public static final int btn_set_default_city=0x7f07006d;
         public static final int capture_container=0x7f070007;
         public static final int capture_crop_view=0x7f070009;
@@ -105,20 +106,21 @@ public final class R {
         public static final int decode_succeeded=0x7f070002;
         public static final int detail_add=0x7f07004c;
         public static final int email=0x7f07003d;
-        public static final int et_addhddsn=0x7f07006f;
+        public static final int et_addhddsn=0x7f070071;
         public static final int et_address=0x7f070014;
         public static final int et_boot_time=0x7f07001f;
-        public static final int et_cityname=0x7f070073;
+        public static final int et_cityname=0x7f070075;
         public static final int et_code=0x7f070040;
         public static final int et_contact=0x7f070025;
         public static final int et_devicelocation=0x7f070016;
         public static final int et_endDate=0x7f070036;
-        public static final int et_hdd_factory=0x7f070070;
+        public static final int et_hdd_factory=0x7f070072;
         public static final int et_hddsn=0x7f07002c;
         public static final int et_name=0x7f07000f;
         public static final int et_net_contact=0x7f070028;
         public static final int et_net_phone=0x7f070029;
-        public static final int et_otherkey=0x7f070077;
+        public static final int et_new_area=0x7f07006f;
+        public static final int et_otherkey=0x7f070079;
         public static final int et_phone=0x7f070026;
         public static final int et_qrcode=0x7f07002e;
         public static final int et_shut_time=0x7f070021;
@@ -130,20 +132,20 @@ public final class R {
         public static final int list_installed=0x7f070038;
         public static final int list_repair=0x7f070068;
         public static final int ll_con=0x7f070033;
-        public static final int ll_export=0x7f07007b;
-        public static final int ll_hide=0x7f07007d;
-        public static final int ll_install=0x7f070079;
+        public static final int ll_export=0x7f07007d;
+        public static final int ll_hide=0x7f07007f;
+        public static final int ll_install=0x7f07007b;
         public static final int ll_main=0x7f070043;
-        public static final int ll_repair=0x7f07007a;
-        public static final int ll_setting=0x7f07007c;
+        public static final int ll_repair=0x7f07007c;
+        public static final int ll_setting=0x7f07007e;
         public static final int login=0x7f07003f;
         public static final int login_form=0x7f07003c;
         public static final int login_status=0x7f07003a;
         public static final int login_status_message=0x7f07003b;
-        public static final int menu_setting=0x7f07008b;
-        public static final int menu_share=0x7f07008a;
-        public static final int menu_system=0x7f07008d;
-        public static final int menu_theme=0x7f07008c;
+        public static final int menu_setting=0x7f07008d;
+        public static final int menu_share=0x7f07008c;
+        public static final int menu_system=0x7f07008f;
+        public static final int menu_theme=0x7f07008e;
         public static final int name=0x7f070044;
         public static final int password=0x7f07003e;
         public static final int quit=0x7f070003;
@@ -174,7 +176,7 @@ public final class R {
         public static final int spi_factory=0x7f070023;
         public static final int spi_hddsn=0x7f07002b;
         public static final int spi_lan_type=0x7f07001a;
-        public static final int spinner_city=0x7f070074;
+        public static final int spinner_city=0x7f070076;
         public static final int sw_boot_on_weekend=0x7f07001c;
         public static final int text_add=0x7f07004a;
         public static final int text_boot_time=0x7f07005c;
@@ -199,16 +201,16 @@ public final class R {
         public static final int tt_net_contact=0x7f070027;
         public static final int tt_qrcode=0x7f07002d;
         public static final int tt_shut_time=0x7f070020;
-        public static final int tv_address=0x7f070089;
+        public static final int tv_address=0x7f07008b;
         public static final int tv_boot_on_weekend=0x7f07001d;
-        public static final int tv_cityname=0x7f070072;
-        public static final int tv_company_name=0x7f070087;
-        public static final int tv_harddisk_no=0x7f070088;
-        public static final int tv_index=0x7f070085;
+        public static final int tv_cityname=0x7f070074;
+        public static final int tv_company_name=0x7f070089;
+        public static final int tv_harddisk_no=0x7f07008a;
+        public static final int tv_index=0x7f070087;
         public static final int tv_name=0x7f070046;
         public static final int tv_old_defalut_city=0x7f07006e;
-        public static final int tv_otherkey=0x7f070076;
-        public static final int tv_real_id=0x7f070086;
+        public static final int tv_otherkey=0x7f070078;
+        public static final int tv_real_id=0x7f070088;
         public static final int tv_title=0x7f07006b;
         public static final int type=0x7f07004e;
         public static final int view_boot_on_sunday=0x7f070058;
@@ -321,13 +323,11 @@ public final class R {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
-
         
 
         Base application theme for API 11+. This theme completely replaces
